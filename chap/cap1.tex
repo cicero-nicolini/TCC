@@ -1,6 +1,6 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%	cap#.tex 
+%	cap1.tex 
 %  -----------
 %
 %	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
@@ -8,33 +8,11 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\chapter{Introdução}\label{introducao}
+\chapter{Introdução}
 % ----------------------------------------------------------
 
-Este documento e seu código-fonte são exemplos de utilização da classe \textsf{ppgec}. Tal classe utiliza a classe \textsf{abntex2} e o pacote \textsf{abntex2cite} derivados do projeto \abnTeX. 
+A execução de aberturas em elementos estruturais é uma prática comum na construção civil. O cenário econômico atual demanda a execução de empreendimentos em prazos curtos, além do avanço tecnológico que torna os projetos cada vez mais complexos, sendo necessária a atuação de múltiplas equipes. Diante desse contexto, é inevitável que ocorram falhas e incompatibilidades. As aberturas são feitas nas estruturas, tornando possível a passagem de tubulações e a execução das instalações complementares. Por outro lado, também é comum que os furos sejam considerados no projeto, visando otimizar o espaço disponível na edificação.
 
-Algumas macros foram modificadas para que a tese ou dissertação ficasse no formato requerido pelo PPGEC-UFRGS, o qual não corresponde exatamente ao produzido conforme a ABNT NBR 14724:2011 \emph{Informação e documentação - Trabalhos acadêmicos - Apresentação}. Uma lista completa das normas observadas pelo \abnTeX\ original é apresentada em \citeonline{abntex2classe}.
+Tendo em vista a importância do tema e a alta demanda para engenheiros civis quanto ao dimensionamento de estruturas nessas condições, o trabalho consiste no desenvolvimento de um software para o dimensionamento de vigas em concreto armado com aberturas na direção de sua largura. Para isso, serão considerados os critérios e orientações da NBR 6118 \cite{ABNT_NBR6118_2026}, norma brasileira que trata de projeto de estruturas de concreto e da forma como as aberturas devem ser abordadas nesses projetos.
 
-Os capítulos apresentados nesse documento, exemplificando alguns comandos, são os mesmos do "Modelo Canônico" de trabalho acadêmico do projeto \abnTeX\ porém com as modificações dadas pela classe \textsf{ppgec}.
-
-Sinta-se convidado a participar do projeto original \abnTeX! Acesse o site em
-\url{http://www.abntex.net.br/}. Também fique livre para conhecer,
-estudar, alterar e redistribuir o trabalho do \abnTeX, desde que os arquivos
-modificados tenham seus nomes alterados e que os créditos sejam dados aos
-autores originais, nos termos da ``The \LaTeX\ Project Public
-License''\footnote{\url{http://www.latex-project.org/lppl.txt}}. Isso permite que futuras versões do \abnTeX~não se tornem automaticamente
-incompatíveis com as customizações promovidas. Consulte
-\citeonline{abntex2-wiki-como-customizar} para mais informações.
-
-Este documento deve ser utilizado como complemento dos manuais do \abnTeX\ 
-\cite{abntex2classe,abntex2cite,abntex2cite-alf} e da classe \textsf{memoir}
-\cite{memoir}. 
-
-Espero, sinceramente, que este modelo aprimore a qualidade do trabalho que
-você produzirá, de modo que o principal esforço seja concentrado no principal:
-na contribuição científica.
-
-
-Augusto Bopsin Borges\footnote{modificada da mensagem original da Equipe \abnTeX~e de Lauro César Araujo}
-  
-
+As formas mais clássicas de analisar esses casos variam desde métodos empíricos como o de \citeonline{Leonhardt1978}, que considera restrições quanto às dimensões relativas da abertura na viga, até abordagens capazes de representar situações mais gerais como os modelos de bielas e tirantes ou método dos elementos finitos. O algoritmo será desenvolvido pelo método da rigidez, também conhecido como método matricial, o qual serviu como base para o desenvolvimento do método dos elementos finitos. Este, por sua vez, é reconhecido por ser uma das melhores ferramentas para a resolução de um amplo conjunto de problemas de engenharia estrutural. Segundo \citeonline{Mendonca2019}, a formulação matricial permite compreender, de forma simplificada, conceitos do método dos elementos finitos como graus de liberdade, matriz de rigidez, processo de sobreposição, sistema de equações algébricas de equilíbrio, imposição de condições de contorno, entre outros. O trabalho surgiu não só como uma tentativa de automatizar esse tipo de projeto, mas também como uma forma de explorar aplicações para o método da rigidez.
