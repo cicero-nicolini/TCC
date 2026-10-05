@@ -422,7 +422,7 @@
 %
 % Definindo siglas da instituição
 \newcommand{\abrevinstituicao}{UFRGS}
-\newcommand{\abrevppg}{PPGEC}
+\newcommand{\abrevppg}{EE/DECIV}
 %
 %
 % Verifica qual a lingua utilizada
@@ -450,8 +450,8 @@
 	% Dados da instituição
 	\instituicao{Universidade Federal do Rio Grande do Sul}
 	\newcommand{\escola}{Escola de Engenharia}
-	\newcommand{\ppg}{Programa de Pós-Graduação em Engenharia Civil}
-	\preambulo{\imprimirtipotrabalho~apresentada ao \ppg~da \imprimirinstituicao~como parte dos requisitos para obtenção do título de \tituloobtido.}
+	\newcommand{\ppg}{Departamento de Engenharia Civil}
+	\preambulo{\imprimirtipotrabalho~apresentado à Comissão de Graduação~da \imprimirinstituicao, como parte dos requisitos para obtenção do título de \tituloobtido.}
 	%
 	% Titulo dos agradecimentos, lista de abreviaturas e siglas, lista de simbolos
 	\renewcommand{\agradecimentosname}{Agradecimentos}
@@ -482,16 +482,16 @@
 	\newcommand{\txtcoordenadordo}{\IfStrEq{\generocoordenador}{F}{Coordenadora do}{Coordenador do}}
 	\newcommand{\txtbancaexaminadora}{Banca Examinadora}	
 	\newcommand{\txttextofolhaderosto}{
-		\OnehalfSpacing{Esta \MakeTextLowercase{\imprimirtipotrabalho} foi julgada adequada para a obtenção do título de \MakeUppercase{\tituloobtido}, na área de concentração \areaconcentracao, e aprovada em sua forma final pelo professor orientador e pelo \ppg~da \imprimirinstituicao.}}	
+		\OnehalfSpacing{Esta \MakeTextLowercase{\imprimirtipotrabalho} foi julgado adequado para a obtenção do título de \MakeUppercase{\tituloobtido}, e aprovado em sua forma final pela Banca Examinadora, pelo Professor Orientador e pela Comissão de Graduação do Curso de Engenharia Civil da Universidade Federal do Rio Grande do Sul.}}	
 	\newcommand{\txttextofolhaderostoquali}{
 			\OnehalfSpacing{Texto apresentado como requisito de \MakeTextLowercase{\imprimirtipotrabalho} na área de concentração de \areaconcentracao~do \ppg~da \imprimirinstituicao.}}
 	%
 	% Documento, curso e título
 	\if \vardoctype 0 
-		\tipotrabalho{Tese de Doutorado}
-		\newcommand{\tipotrabalhocurto}{Tese}
-		\newcommand{\cursorealizado}{Doutorado em Engenharia}
-		\newcommand{\tituloobtido}{Doutor em Engenharia}	
+		\tipotrabalho{Trabalho de Conclusão de Curso}
+		\newcommand{\tipotrabalhocurto}{Trabalho de Conclusão de Curso}
+		\newcommand{\cursorealizado}{Engenharia Civil}
+		\newcommand{\tituloobtido}{Engenheiro Civil}	
 	\else \if \vardoctype 1
 		\tipotrabalho{Dissertação de Mestrado}
 		\newcommand{\tipotrabalhocurto}{Dissertação}
@@ -813,10 +813,13 @@
 		\imprimirlocal, \datacompleta
 	\end{center}
 	\vspace*{20pt}
+
+
 	\begin{flushright}
 		
 		\IfStrEq{\possuicoorientador}{SIM}{
-			\begin{minipage}{0.52\textwidth}
+			
+		\begin{minipage}{0.52\textwidth}
 				\begin{flushright}
 					\imprimirorientador \\ \titorientador \\ \txtorientador
 					\vspace{7mm}
@@ -832,9 +835,9 @@
 			\imprimirorientador \\ \titorientador \\ \txtorientador
 			\vspace{7mm}}
 		%	
-		\vspace*{20pt}
-		\\ \coordenador \\ \titcoordenador \\ \txtcoordenadordo~ \abrevppg/\abrevinstituicao
-		\vspace{36pt}
+		%\vspace*{20pt}
+		%\\ \coordenador \\ \titcoordenador \\ \txtcoordenadordo~ \abrevppg/\abrevinstituicao
+		%\vspace{36pt}
 		%
 		\\ \textbf{\MakeUppercase{\txtbancaexaminadora}}
 		\vspace{36pt}
