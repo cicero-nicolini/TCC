@@ -1,0 +1,54 @@
+1 - Introdução
+2 - Descrição do trabalho e escopo
+    2.1 - Objetivo principal
+    2.2 - Objetivo secundário
+    2.3 - Delimitações
+    2.4 - Delineamento
+
+3 - Aberturas em Vigas
+
+    3.1 - Definições e influcência dos furos no comportamento estrutural de Vigas
+        * Perturbação do campo de tensões em torno de furos 
+        * Regiões de descontinuidades e regiões Bernoulli
+    3.2 - Recomendações normativas NBR6118
+    3.3 - Modelos presentes na literatura (Fusco, Bielas e Tirantes, método viga veriendel)
+    3.4 - Outras ferramentas para dimensionamento de aberturas (TQS, e veria se tem mais algum)
+
+4 - Metodologia
+
+    4.1 Modelo estrutural
+        * Parâmetros geométricos da viga com abertura
+        * Modelo de barras proposto
+    4.2 Descrição do Método da Rigidez
+    4.3 Dimensionamento das armaduras longitudinais
+        4.3.1 Domínios de deformação no ELU
+        4.3.2 Flexão simples
+        4.3.3 Flexo-tração
+        4.3.4 Flexo compressão reta
+    4.4 Dimensionamento das armaduras transversais
+        4.4.1 - Modelo I
+        4.4.2 - Modelo II
+
+5 - Implementação do Software
+
+    5.1 Linguagem e estrutura do Software
+    5.2 Utilização do Software (dados de entrada)
+    5.3 Saída de resultados
+
+6 - Verificação do software
+
+    6.1 Verificações parciais dos deslocamentos nodais e esforços solicitantes do modelo estrutural
+    6.2 Verificações pariciais da flexão simples
+    6.3 Verificações pariciais da flexo-tração
+    6.4 Verificações parciais da flexo-compressão reta
+    6.5 Verificação do esforço cortante - Modelo I
+    6.6 Verificação do esforço cortante - Modelo II
+    6.7 Verificação de uma viga com abertura
+
+7 - Análises Paramétricas
+
+    7.1 Exemplo de viga típica
+    7.2 Alterando a posição longitudinal do furo
+    7.3 Alterando a posição vertical do furo
+
+8 - Considerações finais
