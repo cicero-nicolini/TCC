@@ -1,0 +1,89 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	cap1.tex 
+%  -----------
+%
+%	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
+%	\chapter{Nome do Capitulo}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\chapter{Descrição do Trabalho e Escopo}
+% ----------------------------------------------------------
+
+\section{Objetivo Principal}
+
+O desenvolvimento de uma ferramenta computacional para auxiliar engenheiros no
+dimensionamento de vigas em concreto armado com aberturas na direção de sua largura.
+
+\section{Objetivos Secundários}
+
+O presente trabalho considera como secundários os seguintes objetivos:
+
+\begin{enumerate}[label=\alph*)]
+\item o desenvolvimento de um modelo estrutural baseado no método da rigidez para a obtenção dos esforços solicitantes;
+
+\item desenvolver o roteiro de dimensionamento estrutural de vigas de concreto armado sob flexão, flexo-tração, flexo-compressão e corte;
+
+\item implementar a solução em linguagem Python utilizando o paradigma de orientação a objetos;
+
+\item desenvolver uma interface de usuário;
+
+\item realizar verificações do modelo estrutural com softwares independentes;
+
+\item comparação do dimensionamento em relação a métodos empíricos que constam na literatura;
+
+\item realizar análises paramétricas referente a mudanças de posição ou de dimensão da abertura e seus impactos no dimensionamento estrutural.
+
+\end{enumerate}
+
+\section{Delimitações}
+
+O presente trabalho terá as seguintes delimitações:
+
+\begin{enumerate}[label=\alph*)]
+\item apenas furos retangulares serão abordados;
+
+\item apenas vigas retas sem efeito de torção;
+
+\item análise estrutural através do modelo da rigidez;
+
+\item serão consideradas apenas cargas distribuidas ao longo da estrutura;
+
+\item vigas que respeitam a hipótese de seções planas (Euler-Bernoulli)
+
+\end{enumerate}
+
+\section{Delineamento}
+
+Para atingir os resultados esperados, o trabalho será desenvolvido por meio das seguintes
+etapas:
+
+\begin{enumerate}[label=\alph*)]
+\item revisão bibliográfica;
+
+\item implementação do método da rigidez;
+
+\item verificações parciais referente a análise estrutural;
+
+\item implementação dos algoritmos para o dimensionamento das armaduras;
+
+\item análises paramétricas;
+
+\item verificação dos resultados;
+
+\item considerações finais.
+
+\end{enumerate}
+
+A revisão bibliográfica consiste na pesquisa de normas, trabalhos acadêmicos e livros,
+envolvendo o dimensionamento de vigas de concreto armado com aberturas, método da
+rigidez e sua implementação computacional. O método da rigidez foi a ferramenta escolhida
+para a obtenção dos esforços internos na estrutura, necessários para o dimensionamento. Para
+verificar a consistência dos resultados, serão testados exemplos do livro Matrix Analysis of
+Framed Structures de \citeonline{Weaver2018}, referência clássica na aplicação do método da
+rigidez. O algoritmo para o dimensionamento das armaduras será planejado e elaborado
+conforme os critérios e parâmetros da NBR 6118 \cite{ABNT_NBR6118_2026}. Na etapa de verificação dos
+resultados, serão feitos testes finais no programa para avaliar seu funcionamento e
+confiabilidade. Ao final serão feitas algumas análises paramétricas e considerações finais a
+respeito do software. 
