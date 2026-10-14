@@ -1,0 +1,70 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	cap1.tex 
+%  -----------
+%
+%	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
+%	\chapter{Nome do Capitulo}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\chapter{Aberturas em Vigas}
+% ----------------------------------------------------------
+
+\section{Definições e influência dos furos no comportamento estrutural de Vigas}
+
+As aberturas transversais em vigas podem apresentar diversas geometrias, sendo as formas circulares e retangulares as mais comuns na prática. Aberturas circulares apresentam vantagens em relação às aberturas com cantos de forma que se recomenda que os cantos sejam o mais arredondados possível. \citeonline{aykac2013flexural}, em estudo experimental com vigas de concreto armado com aberturas circulares e quadradas, observaram que as aberturas quadradas provocaram maiores reduções na capacidade resistente, devido à concentração de tensões em seus cantos.
+Quanto às dimensões das aberturas, muitos pesquisadores estabeleceram limites, que quando ultrapassados, essa região deve passar a ser considerada no dimensionamento e na determinação das solicitações da viga. Aberturas de grandes dimensões afetam significativamente a rigidez e a resistência da estrutura.
+
+\citeonline{Leonhardt1978} apresentam diretrizes para o projeto de vigas de concreto armado com aberturas. Os autores destacam que aberturas só podem ser executadas em trechos próximos aos apoios, onde o esforço cortante é maior, se as bielas importantes de compressão não forem interrompidas. Em trechos de esforço cortante menor, são permitidas aberturas de maior comprimento. Além disso, considerando aberturas de maior comprimento, nessa região, a estrutura passa a se comportar como um pórtico, de forma semelhante a uma viga Vierendeel. De acordo com os autores, ensaios realizados com vigas retangulares nas quais foram previstas armaduras devidamente dimensionadas demonstraram que a carga de ruptura por flexão foi a mesma que a observada em vigas sem aberturas.
+
+\subsection{Distribuição Elástica de Tensões ao Redor de Aberturas}
+
+A obra de \citeonline{MansurTan1999} discute o problema da concentração de tensões ao redor de aberturas, reunindo estudos clássicos formulados pelo método da elasticidade, considerando que o material é homogêneo, isotrópico e obedece à Lei de Hooke. Dentre esses trabalhos, estão as contribuições de Douglas e Gambrell (1974), que analisaram aberturas retangulares em vigas de aço e a distribuição de tensões ao redor da região perfurada na alma. A Figura X ilustra esses resultados evidenciando o surgimento de intensas tensões de tração nos cantos diagonalmente opostos da abertura.
+
+IMAGEM - FLUXO DE TENSÕES
+Fonte: Douglas e Gambrell (1974 \textit{apud} Mansur e Tan, 1999).
+
+Em vigas de concreto armado, os resultados elásticos perdem a validade após o surgimento de fissuras na estrutura, mas podem ser usados como referência para o posicionamento das armaduras.
+
+\section{Recomendações normativas NBR6118}
+
+A NBR6118 \citeonline{ABNT_NBR6118_2026}, permite a dispensa de verificação para pequenos furos que respeitem restrições quanto a sua posição e dimensões. A norma também define que furos possuem pequenas dimensões em relação a estrutura, ao contrário das aberturas. 
+
+A seguir são apresentados os critérios estabelecidos pela norma para a dispensa de verificação:
+
+\begin{enumerate}[label=\alph*)]
+\item devem estar a uma distância mínima da face do apoio de 2h, sendo h a altura da viga;
+
+\item furos quadrados com lados de no máximo 12,5 cm quando retangulares ou de diâmetro de 12,5 cm quando circularres, ou h/3;
+
+\item distância mínima entre furos de 2h;
+
+\item cobrimentos devem ser respeitados e armaduras não devem ser interrompidas.
+
+\end{enumerate}
+
+\section{Modelos presentes na literatura}
+
+A seguir serão apresentados alguns modelos estruturais presentes na literatura necessários para a obtenção das distribuições de esforços solicitantes.
+
+\subsection{\citeonline{sussekind1987concreto2}}
+
+\citeonline{sussekind1987concreto2} define que o dimensionamento geral da peça, se respeitados certos limites, poderá ser feito como o de uma viga maciça admitindo a hipótese das seções planas, até mesmo na região furada. O estudo local da região da abertura deve ser feito dividindo a viga no eixo do furo por um plano vertical, o equilíbrio é obtido pelo efeito dos esforços atuantes nos banzos superior e inferior da seção.
+
+O momento fletor na seção do furo é equilibrado e transmitido pelo binário de forças internas composto pela resultante de compressão no banzo superior ($D_{d}$) e resultante de tração na armadura do banzo inferior ($Z_{d}$). O esforço cortante total ($Q_{d}$) divide-se em duas parcelas ($Q_{1d}$) e ($Q_{2d}$) proporcionais à rigidez à flexão nos banzos superior e inferior. Nota-se que a rigidez do banzo superior (parte comprimida) é a de uma seção maciça de concreto, enquanto que a rigidez do banzo inferior é obtida apenas pela armadura tracionada. Nesse contexto, o autor recomenda considerar ($Q_{1d}$) = ($Q_{d}$) e ($Q_{2d}$) = 0,1($Q_{d}$).
+
+Para obtenção dos esforços de dimensionamento, deve-se considerar uma seção sob flexão composta considerando no banzo superior um esforço normal Dd a 0,4$x$ da fibra mais comprimida e um momento fletor ($M_{1d}$). De forma similar, o banzo inferior está submetido a flexão composta, no qual ($N_{d}$) = ($Z_{d}$) aplicado na armadura tracionada e $M_{2d} = 0{,}1 Q_d \times a$ onde a é a metade do comprimento da abertura. As figuras x e y a seguir ilustram a análise e obtenção dos esforços para o dimensionamento. 
+
+IMAGENS LIVRO SUSSEKIND pag 160
+
+O autor impõe limites para a utilização do modelo, que caso ultrapassados a estrutura deve ser analisada como um quadro fechado hiperestático. Destacando-se os seguintes:
+
+\begin{enumerate}[label=\alph*)]
+\item comprimento da abertura não ultrapassar 1,5h, onde h é a altura da viga;
+
+\item distância entre furos de no mínimo 1,2h;
+
+\item banzo inferior com no mínimo 10 cm para envolver e ancorar a armadura principal;
+
+\end{enumerate}
