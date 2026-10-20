@@ -13,17 +13,32 @@
 
 \section{Definições e influência dos furos no comportamento estrutural de Vigas}
 
-As aberturas transversais em vigas podem apresentar diversas geometrias, sendo as formas circulares e retangulares as mais comuns na prática. Aberturas circulares apresentam vantagens em relação às aberturas com cantos de forma que se recomenda que os cantos sejam o mais arredondados possível. \citeonline{aykac2013flexural}, em estudo experimental com vigas de concreto armado com aberturas circulares e quadradas, observaram que as aberturas quadradas provocaram maiores reduções na capacidade resistente, devido à concentração de tensões em seus cantos.
+As aberturas transversais em vigas podem apresentar diversas geometrias, sendo as formas circulares e retangulares as mais comuns na prática. Aberturas circulares apresentam vantagens em relação às aberturas com cantos de forma que se recomenda que os cantos sejam o mais arredondados possível. \citeonline{aykac2013flexural}, em estudo experimental com vigas de concreto armado com aberturas circulares e quadradas, observaram que as aberturas quadradas provocaram maiores reduções na capacidade resistente da estrutura, devido à concentração de tensões em seus cantos.
 Quanto às dimensões das aberturas, muitos pesquisadores estabeleceram limites, que quando ultrapassados, essa região deve passar a ser considerada no dimensionamento e na determinação das solicitações da viga. Aberturas de grandes dimensões afetam significativamente a rigidez e a resistência da estrutura.
 
-\citeonline{Leonhardt1978} apresentam diretrizes para o projeto de vigas de concreto armado com aberturas. Os autores destacam que aberturas só podem ser executadas em trechos próximos aos apoios, onde o esforço cortante é maior, se as bielas importantes de compressão não forem interrompidas. Em trechos de esforço cortante menor, são permitidas aberturas de maior comprimento. Além disso, considerando aberturas de maior comprimento, nessa região, a estrutura passa a se comportar como um pórtico, de forma semelhante a uma viga Vierendeel. De acordo com os autores, ensaios realizados com vigas retangulares nas quais foram previstas armaduras devidamente dimensionadas demonstraram que a carga de ruptura por flexão foi a mesma que a observada em vigas sem aberturas.
+\citeonline{Leonhardt1978} apresentam diretrizes para o projeto de vigas de concreto armado com aberturas. Os autores destacam que aberturas só podem ser executadas em trechos próximos aos apoios, onde o esforço cortante é maior, se as bielas importantes de compressão não forem interrompidas. Em trechos de esforço cortante menor, as aberturas podem ter comprimento maior. Além disso, considerando aberturas de grande comprimento, nessa região, a estrutura passa a se comportar como um pórtico, de forma semelhante a uma viga Vierendeel. De acordo com os autores, ensaios realizados com vigas retangulares nas quais foram previstas armaduras devidamente dimensionadas demonstraram que a carga de ruptura por flexão foi a mesma que a observada em vigas sem aberturas.
 
 \subsection{Distribuição Elástica de Tensões ao Redor de Aberturas}
 
-A obra de \citeonline{MansurTan1999} discute o problema da concentração de tensões ao redor de aberturas, reunindo estudos clássicos formulados pelo método da elasticidade, considerando que o material é homogêneo, isotrópico e obedece à Lei de Hooke. Dentre esses trabalhos, estão as contribuições de Douglas e Gambrell (1974), que analisaram aberturas retangulares em vigas de aço e a distribuição de tensões ao redor da região perfurada na alma. A Figura X ilustra esses resultados evidenciando o surgimento de intensas tensões de tração nos cantos diagonalmente opostos da abertura.
+A obra de \citeonline{MansurTan1999} discute o problema da concentração de tensões ao redor de aberturas, reunindo estudos clássicos formulados pelo método da elasticidade, considerando que o material é homogêneo, isotrópico e obedece à Lei de Hooke. Entre os trabalhos abordados, estão as contribuições de Douglas e Gambrell (1974 \textit{apud} Mansur e Tan, 1999), que analisaram aberturas retangulares em vigas de aço e a distribuição de tensões ao redor da região perfurada na alma. A figura \ref{Fig.3.1} ilustra esses resultados evidenciando picos de tensão nos cantos, onde tensões de tração e compressão se encontram em cantos diagonalmente opostos.
 
-IMAGEM - FLUXO DE TENSÕES
-Fonte: Douglas e Gambrell (1974 \textit{apud} Mansur e Tan, 1999).
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.3.1}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Distribuição de tensões elásticas ao redor de abertura em viga de aço
+    \end{minipage}
+
+    \includegraphics[scale=0.25]{distribuicao.jpeg}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: adaptado de Douglas e Gambrell (1974 \textit{apud} Mansur e Tan, 1999)
+    \end{minipage}
+\end{figure}
 
 Em vigas de concreto armado, os resultados elásticos perdem a validade após o surgimento de fissuras na estrutura, mas podem ser usados como referência para o posicionamento das armaduras.
 
@@ -46,7 +61,7 @@ A seguir são apresentados os critérios estabelecidos pela norma para a dispens
 
 \section{Modelos presentes na literatura}
 
-A seguir serão apresentados alguns modelos estruturais presentes na literatura necessários para a obtenção das distribuições de esforços solicitantes.
+A seguir serão apresentados alguns modelos estruturais presentes na literatura necessários para a obtenção das distribuições de esforços solicitantes em vigas de concreto armado com aberturas.
 
 \subsection{\citeonline{sussekind1987concreto2}}
 
@@ -56,7 +71,8 @@ O momento fletor na seção do furo é equilibrado e transmitido pelo binário d
 
 Para obtenção dos esforços de dimensionamento, deve-se considerar uma seção sob flexão composta considerando no banzo superior um esforço normal Dd a 0,4$x$ da fibra mais comprimida e um momento fletor ($M_{1d}$). De forma similar, o banzo inferior está submetido a flexão composta, no qual ($N_{d}$) = ($Z_{d}$) aplicado na armadura tracionada e $M_{2d} = 0{,}1 Q_d \times a$ onde a é a metade do comprimento da abertura. As figuras x e y a seguir ilustram a análise e obtenção dos esforços para o dimensionamento. 
 
-IMAGENS LIVRO SUSSEKIND pag 160
+
+IMAGEM LIVRO SUSSEKIND pag 160
 
 O autor impõe limites para a utilização do modelo, que caso ultrapassados a estrutura deve ser analisada como um quadro fechado hiperestático. Destacando-se os seguintes:
 
@@ -68,3 +84,94 @@ O autor impõe limites para a utilização do modelo, que caso ultrapassados a e
 \item banzo inferior com no mínimo 10 cm para envolver e ancorar a armadura principal;
 
 \end{enumerate}
+
+\subsection{Mansur et al. (1992 \textit{apud} Mansur e Tan, 1999)}
+
+O modelo de Mansur et al. (1992 \textit{apud} Mansur e Tan, 1999) representa a viga por um modelo estrutural de segmentos uniformes conforme ilustrado na figura \ref{Fig.3.3}, atribuindo ao trecho com abertura rigidezes equivalentes à flexão e ao cisalhamento, de modo a reproduzir seu comportamento estrutural. Em que:
+
+\begin{enumerate}[label=\alph*)]
+\item E é o módulo de elasticidade;
+
+
+
+\item I é o momento de inércia da seção transversal;
+
+
+
+\item G é o módulo de elasticidade transversal;
+
+
+
+\item A é a área da seção transversal.
+
+\end{enumerate}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.3.3}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Modelo de viga equivalente
+    \end{minipage}
+
+    \includegraphics[scale=0.75]{modelo_mansur.jpeg}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: adaptado de \citeonline{MansurTan1999})
+    \end{minipage}
+\end{figure}
+
+A rigidez equivalente à flexão, ($EI_{eq}$), é determinada com base na seção líquida da viga na região da abertura, considerando os banzos superior e inferior como uma única unidade e a seção fissurada por flexão. O momento de inércia é calculado pelo método da seção transformada, adotando o módulo de elasticidade do concreto recomendado pelo ACI Code (1995 \textit{apud} Mansur e Tan, 1999).
+
+A rigidez equivalente ao cisalhamento, ($GA_{eq}$), depende das rigidezes à flexão dos banzos e do comprimento efetivo, ($l_{e}$), da região vazada. Com base em dados experimentais, os autores propuseram uma expressão empírica para determinar esse comprimento:
+
+equação...
+
+em que:
+
+\begin{enumerate}[label=\alph*)]
+\item ($l_{0}$) é o comprimento da abertura;
+
+
+
+\item ($d_{0}$) é a altura da abertura;
+
+
+
+\item h é a altura total da viga;
+
+\end{enumerate}
+
+Com base nessas considerações, a análise estrutural é realizada pelo método da rigidez, utilizando matrizes de rigidez e de transferência modificadas para incorporar os efeitos das deformações por cisalhamento na representação do elemento equivalente.
+
+\subsection{Método de Bielas e Tirantes}
+
+De acordo com \citeonline{MansurTan1999}, uma estrutura pode ser dividida em regiões B e regiões D. 
+As regiões B são aquelas em que a hipótese de Bernoulli em que a distribuição de deformações é plana é válida e a teoria da flexão pode ser aplicada com boa precisão. 
+As regiões D são aquelas em que a distribuição de deformações apresenta significativa não linearidade, por exemplo, perto de cargas concentradas, aberturas, cantos, curvas, entre outras descontinuidades.
+
+Para que essa abordagem possa ser aplicada em qualquer parte da estrutura, é feita uma analogia de treliça na forma de um modelo de elementos comprimidos (bielas) e tracionados (tirantes).
+Os esforços de cortante e momento das regiões B são aplicadas como carregamentos às regiões D, e vice-versa. A região ($B_{1}$) é representada por uma treliça simples, cujas forças na biela comprimida ($C_{1}$), na biela comprimida ($C_{2}$) e no tirante tracionado ($T_{1}$) são dadas por: 
+
+...
+
+($M_{1}$) e ($V_{1}$) são, respectivamente, o momento fletor e a força cortante na seção situada entre as regiões ($B_{1}$) e ($D_{2}$); z é o braço de alavanca, determinado considerando a hipótese de seções planas na seção transversal localizada no meio da abertura. \(\theta\) é o ângulo de inclinação da biela comprimida diagonal, que pode ser considerado entre 30° e 60°.
+
+Os autores apresentam um modelo de bielas e tirantes para a região próxima à abertura conforme Fig(c). Para simplificar, o modelo da região ($B_{2}$) é estendido para as regiões ($D_{2}$) e ($D_{3}$), deixando para a modelagem apenas as regiões ($D_{2}'$) e ($D_{3}'$), conforme mostrado na Fig(b). 
+Se a abertura estiver próxima à parte inferior da viga, a região ($B_{3}$) pode ser dimensionada para uma força de tração constante:
+
+T2 = ...
+
+onde M2 é o momento no centro da abertura.
+
+ultimo paragrafo sintetizar, reescrever
+
+imagem
+
+
+
+
+
