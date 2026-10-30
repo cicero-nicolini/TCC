@@ -1,0 +1,90 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	cap4.tex 
+%  -----------
+%
+%	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
+%	\chapter{Nome do Capitulo}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\chapter{Metodologia}
+% ----------------------------------------------------------
+
+Esta seção apresenta a metodologia adotada para o desenvolvimento do trabalho, abrangendo a definição do modelo estrutural, a aplicação do método da rigidez para obtenção dos esforços solicitantes e os procedimentos utilizados no dimensionamento das armaduras longitudinais e transversais.
+
+\section{Modelo Estrutural}
+
+Para o estudo das vigas com abertura, foi escolhido um modelo de pórtico plano. A região do furo é representada por um quadro plano, considerando a transferência dos esforços das bordas laterais para os banzos. Essa representação permite analisar o comportamento estrutural da região da abertura e a interação entre seus elementos. A análise estrutural foi realizada pelo método da rigidez direta, escolhido pela facilidade de implementação computacional e pela possibilidade de aplicação a diferentes estruturas. A Figura \ref{Fig.4.1} apresenta a configuração adotada para a análise estrutural: (a) geometria da viga com abertura; (b) correspondência entre a geometria da viga e sua representação por elementos de barra; e (c) modelo de pórtico plano utilizado na análise estrutural.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.1}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Representação da viga com abertura e seu modelo estrutural
+    \end{minipage}
+
+    \includegraphics[scale=0.212]{modelo.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: Elaborado pelo autor (2026)
+    \end{minipage}
+\end{figure}
+
+\section{Descrição do Método da Rigidez}
+
+Segundo \citeonline{Weaver2018}, para construir a matriz de rigidez da estrutura, é necessário obter as matrizes de rigidez dos elementos, que descrevem as relações entre as forças e os deslocamentos em cada extremidade (nós da barra), inicialmente referenciados a um sistema local de coordenadas.
+
+Quando os graus de liberdade dos elementos são expressos no sistema de coordenadas global da estrutura, eles coincidem com os graus de liberdade dos nós compartilhados entre as barras. Dessa forma, a transferência das contribuições dos elementos para a matriz de rigidez da estrutura pode ser realizada por meio da adição direta dos coeficientes correspondentes aos mesmos graus de liberdade globais. O mesmo procedimento é aplicado à montagem do vetor de cargas equivalentes.
+
+As matrizes de rigidez dos elementos são obtidas aplicando deslocamentos unitários (translações e rotações), individualmente, em cada grau de liberdade, mantendo os demais deslocamentos nulos. Os coeficientes $k_{ij}$ da matriz de rigidez representam a força nodal desenvolvida na direção do grau de liberdade (i) em resposta à imposição de um deslocamento unitário no grau de liberdade (j), mantendo os demais deslocamentos nodais nulos. Dessa forma, a interpretação dos índices da matriz pode ser descrita como:
+
+\begin{enumerate}[label=\alph*)]
+\item Coluna (j): identifica o grau de liberdade no qual é imposto o deslocamento unitário;
+\item Linha (i): identifica o grau de liberdade no qual é determinada a força nodal correspondente.
+\end{enumerate}
+
+Na matriz de rigidez global da estrutura, o coeficiente $K_{ij}$ possui interpretação semelhante à do coeficiente $k_{ij}$ da matriz de rigidez de um elemento, porém é obtido pela montagem das matrizes de rigidez dos elementos no sistema global de coordenadas.
+
+Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Desse modo, os vetores de forças e de deslocamentos nodais possuem dimensão 6, e o comportamento mecânico do elemento é expresso pela equação matricial \ref{eq:rigidez_barra}. A figura \ref{Fig.4.2} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
+
+\begin{equation}
+\mathbf{k}'\mathbf{u}' = \mathbf{f}'
+\label{eq:rigidez_barra}
+\end{equation}
+
+em que:
+
+\begin{enumerate}[label=\alph*)]
+\item $\mathbf{k}'$ = matriz de rigidez local do elemento;
+\item $\mathbf{u}'$ = vetor de deslocamentos nodais locais do elemento;
+\item $\mathbf{f}'$ = vetor de forças nodais locais do elemento.
+\end{enumerate}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.2}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Matriz de rigidez local de uma barra de pórtico plano
+    \end{minipage}
+
+    \includegraphics[scale=1.5]{matriz_barra.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: adaptado de \citeonline{Weaver2018}
+    \end{minipage}
+\end{figure}
+
+\subsection{Matriz de Rotação}
+
+A matriz de rotação é utilizada no método da rigidez direta para transformar as matrizes de rigidez dos elementos do sistema de coordenadas local para o sistema de coordenadas global da estrutura. Essa transformação permite expressar as contribuições de todos os elementos em um referencial comum. Em seguida, as contribuições dos elementos são reunidas por meio da adição dos coeficientes associados aos mesmos graus de liberdade globais, formando a matriz de rigidez global da estrutura.
+
+
