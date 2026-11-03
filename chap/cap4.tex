@@ -58,6 +58,44 @@ em que:
     \item $\mathbf{F}$ = vetor de forças nodais da estrutura.
 \end{enumerate}
 
+A figura \ref{Fig.4.2} a seguir apresenta uma estrutura formada por elementos de viga e a figura \ref{Fig.4.3} demonstra a montagem da matriz de rigidez da estrutura a partir da adição direta das matrizes de rigidez dos elementos.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.2}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Estrutura formada por elementos de viga
+    \end{minipage}
+
+    \includegraphics[scale=0.35]{viga.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: Adaptado de \citeonline{Weaver2018}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.3}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Montagem da matriz de rigidez da estrutura
+    \end{minipage}
+
+    \includegraphics[scale=0.75]{matriz_viga.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: Adaptado de \citeonline{Weaver2018}
+    \end{minipage}
+\end{figure}
+
 Para que o sistema possa ser resolvido, as condições de contorno são introduzidas impondo os deslocamentos conhecidos, geralmente nulos, nos graus de liberdade restringidos. Dessa forma, a matriz passa a ser não singular e a resolução do sistema de equações resultante fornece os deslocamentos nodais não restringidos. A partir desses deslocamentos é possivel determinar os esforços internos nas extremidades das barras e as reações nos apoios da estrutura.
 
 O significado físico da matriz de rigidez pode ser compreendido a partir da aplicação individual de deslocamentos unitários (translações e rotações) em cada grau de liberdade, mantendo os demais deslocamentos nulos. Assim, os coeficientes $k_{ij}$ da matriz representam a força nodal desenvolvida na direção do grau de liberdade (i) em resposta à imposição de um deslocamento unitário no grau de liberdade (j), mantendo os demais deslocamentos nodais nulos. Dessa forma, a interpretação dos índices da matriz pode ser descrita como:
@@ -67,12 +105,12 @@ O significado físico da matriz de rigidez pode ser compreendido a partir da apl
 \item linha (i): identifica o grau de liberdade no qual é determinada a força nodal correspondente.
 \end{enumerate}
 
-Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Desse modo, os vetores de forças e de deslocamentos nodais possuem dimensão 6, enquanto a matriz de rigidez do elemento é quadrada, de dimensão 6x6. A figura \ref{Fig.4.2} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
+Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Desse modo, os vetores de forças e de deslocamentos nodais possuem dimensão 6, enquanto a matriz de rigidez do elemento é quadrada, de dimensão 6x6. A figura \ref{Fig.4.4} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
 
 \begin{figure}[htb]
     \centering
     \refstepcounter{figure}
-    \label{Fig.4.2}
+    \label{Fig.4.4}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -99,12 +137,12 @@ em que:
 
 \subsection{Transformação dos Sistemas de Coordenadas}
 
-Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento dos eixos locais para os eixos da estrutura, é necessária a matriz de rotação $\mathbf{R}$ conforme ilustrado na figura \ref{Fig.4.3}. A matriz de rotação transposta $\mathbf{R}^T$ transforma os vetores de forças e deslocamentos nodais dos elementos do sistema local de coordenadas para o global, e de forma inversa a matriz $\mathbf{R}$ transforma os vetores do sistema global para o local conforme as equações \ref{eq:transformação_G_L} e \ref{eq:transformação_L_G}. A equação \ref{eq:kG} demonstra a transformação da matriz de rigidez para o sistema de coordenadas global.
+Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento dos eixos locais para os eixos da estrutura, é necessária a matriz de rotação $\mathbf{R}$ conforme ilustrado na figura \ref{Fig.4.5}. A matriz de rotação transposta $\mathbf{R}^T$ transforma os vetores de forças e deslocamentos nodais dos elementos do sistema local de coordenadas para o global, e de forma inversa a matriz $\mathbf{R}$ transforma os vetores do sistema global para o local conforme as equações \ref{eq:transformação_G_L} e \ref{eq:transformação_L_G}. A equação \ref{eq:kG} demonstra a transformação da matriz de rigidez para o sistema de coordenadas global.
 
 \begin{figure}[htb]
     \centering
     \refstepcounter{figure}
-    \label{Fig.4.3}
+    \label{Fig.4.5}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
