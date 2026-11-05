@@ -27,7 +27,7 @@ Para o estudo das vigas com abertura, foi escolhido um modelo de pórtico plano,
         Figura \thefigure: Representação da viga com abertura e seu modelo estrutural
     \end{minipage}
 
-    \includegraphics[scale=0.212]{modelo.png}
+    \includegraphics[scale=0.5]{modelo.png}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -105,7 +105,7 @@ O significado físico da matriz de rigidez pode ser compreendido a partir da apl
 \item linha (i): identifica o grau de liberdade no qual é determinada a força nodal correspondente.
 \end{enumerate}
 
-Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Desse modo, os vetores de forças e de deslocamentos nodais possuem dimensão 6, enquanto a matriz de rigidez do elemento é quadrada, de dimensão 6x6. A figura \ref{Fig.4.4} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
+Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Portanto, os vetores de forças e de deslocamentos nodais são de ordem 6, e a matriz de rigidez do elemento, $6 \times 6$. A figura \ref{Fig.4.4} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
 
 \begin{figure}[htb]
     \centering
@@ -117,8 +117,21 @@ Na formulação do método da rigidez para um elemento de pórtico plano, são c
         Figura \thefigure: Matriz de rigidez do elemento no sistema local de coordenadas
     \end{minipage}
 
-    \includegraphics[scale=0.15]{matriz_barra.png}
+    \vspace{0.05cm}
 
+    \[
+        \mathbf{k} = \begin{bmatrix}
+            \frac{EA}{L} & 0 & 0 & -\frac{EA}{L} & 0 & 0 \\
+            0 & \frac{12EI}{L^3} & \frac{6EI}{L^2} & 0 & -\frac{12EI}{L^3} & \frac{6EI}{L^2} \\
+            0 & \frac{6EI}{L^2} & \frac{4EI}{L} & 0 & -\frac{6EI}{L^2} & \frac{2EI}{L} \\
+            -\frac{EA}{L} & 0 & 0 & \frac{EA}{L} & 0 & 0 \\
+            0 & -\frac{12EI}{L^3} & -\frac{6EI}{L^2} & 0 & \frac{12EI}{L^3} & -\frac{6EI}{L^2} \\
+            0 & \frac{6EI}{L^2} & \frac{2EI}{L} & 0 & -\frac{6EI}{L^2} & \frac{4EI}{L}
+        \end{bmatrix}
+    \]
+
+    \vspace{0.3cm}
+    
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
         Fonte: Adaptado de \citeonline{Weaver2018}
@@ -149,7 +162,20 @@ Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento
         Figura \thefigure: Matriz de rotação de um elemento de pórtico plano
     \end{minipage}
 
-    \includegraphics[scale=0.15]{matriz_rotação.png}
+    \vspace{0.05cm}
+
+    \[
+        \mathbf{R} = \begin{bmatrix}
+            \cos\theta & \sin\theta & 0 & 0 & 0 & 0 \\
+            -\sin\theta & \cos\theta & 0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & \cos\theta & \sin\theta & 0 \\
+            0 & 0 & 0 & -\sin\theta & \cos\theta & 0 \\
+            0 & 0 & 0 & 0 & 0 & 1
+        \end{bmatrix}
+    \]
+
+    \vspace{0.3cm}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -158,20 +184,20 @@ Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento
 \end{figure}
 
 \begin{equation}
-\mathbf{u} = \mathbf{R} \mathbf{u_{G}}
+\mathbf{f} = \mathbf{R} \mathbf{f_{G}}
 \label{eq:transformação_G_L}
 \end{equation}
 
 \begin{equation}
-\mathbf{u_{G}} = \mathbf{R}^T \mathbf{u}
+\mathbf{f_{G}} = \mathbf{R}^T \mathbf{f}
 \label{eq:transformação_L_G}
 \end{equation}
 
 em que:
 
 \begin{enumerate}[label=\alph*)]
-    \item $\mathbf{u_{G}}$ = vetor de deslocamentos nodais da barra no sistema de coordenadas global;
-    \item $\mathbf{u}$ = vetor de deslocamentos nodais da barra no sistema de coordenadas local;
+    \item $\mathbf{f_{G}}$ = vetor de forças nodais da barra no sistema de coordenadas global;
+    \item $\mathbf{f}$ = vetor de forças nodais da barra no sistema de coordenadas local;
     \item $\mathbf{{R}}$ = matriz de rotação;
     \item $\mathbf{{R}^T}$ = matriz de rotação transposta.
 \end{enumerate}
@@ -189,6 +215,97 @@ em que:
     \item $\mathbf{{R}}$ = matriz de rotação;
     \item $\mathbf{{R}^T}$ = matriz de rotação transposta.
 \end{enumerate}
+
+\section{Dimensionamento das Armaduras Longitudinais}
+
+Conforme \citeonline{carvalho2014calculo}, o dimensionamento é feito no estado limite último, exigindo que a seção mais solicitada alcance as deformações limites dos materiais, ou seja, a falha estrutural pode ocorrer tanto pelo esmagamento do concreto comprimido quanto pelo alongamento excessivo da armadura tracionada.
+
+As armaduras longitudinais são dimensionadas por flexão simples nas regiões da viga onde o esforço normal é nulo e flexão composta em regiões submetidas a esforços de flexo-tração ou flexo-compressão. Os dimensionamentos das armaduras longitudinais são realizados considerando um único plano de flexão (flexão normal), não sendo considerada a flexão oblíqua. Para o dimensionamento foram considerados os seguintes critérios:
+
+\begin{enumerate}[label=\alph*)]
+    \item o dimensionamento estrutural abrange classes de concreto do Grupo I (de C20 a C50) e do Grupo II (de C50 a C90);
+    \item para garantir um comportamento dútil adequado da viga, foram respeitados os limites recomendados pela NBR 6118 \citeonline{ABNT_NBR6118_2026} quanto à profundidade relativa da linha neutra: $x/d \le 0{,}45$ para concretos com $f_{ck} \le 50\text{ MPa}$ e $x/d \le 0{,}35$ para concretos com $f_{ck} \le 90\text{ MPa}$.
+\end{enumerate}
+
+\subsection{Flexão Simples}
+
+Segundo os autores, o cálculo da quantidade de armadura longitudinal necessária é realizado a partir do equilíbrio das forças atuantes na seção. Conhecendo a resistência característica do concreto ($f_{ck}$), largura da seção transversal ($b_{w}$), altura útil ($d$), tipo de aço ($f_{yk}$) e o momento de cálculo ($M_{d}$ = $1,4M$), é possível
+determinar a área da armadura longitudinal necessária ($A_{s}$) para que o momento seja resistido por um elemento de seção transversal de concreto armado. O equilíbrio das forças normais atuantes na seção é dado pela igualdade entre a força de compressão do concreto ($F_{c}$) e a força de tração da armadura ($F_{s}$). O equilíbrio dos momentos é dado pela igualdade entre o momento das forças internas em relação a qualquer ponto (no caso, em relação ao C.G. da armadura) e o momento externo de cálculo. A seguir é apresentado o equacionamento para concretos de qualquer grupo:
+
+\begin{equation}
+    F_s = F_c
+\end{equation}
+
+\begin{equation}
+    M_d = F_c \cdot z
+\end{equation}
+
+\begin{equation}
+    M_d = F_s \cdot z
+\end{equation}
+
+\begin{equation}
+    F_c = (\alpha_c \cdot f_{cd}) \cdot (b_w) \cdot (\lambda \cdot x)
+\end{equation}
+
+\begin{equation}
+    z = d - 0{,}5 \cdot \lambda \cdot x
+\end{equation}
+
+\begin{equation}
+    M_d = b_w \cdot \alpha_c \cdot f_{cd} \cdot \lambda \cdot x \cdot (d - 0{,}5 \cdot \lambda \cdot x)
+\end{equation}
+
+\begin{equation}
+    M_d = (\lambda \cdot x \cdot d - 0{,}5 \cdot \lambda^2 \cdot x^2) \cdot b_w \cdot \alpha_c \cdot f_{cd}
+\end{equation}
+
+\begin{equation}
+    x = \frac{d \pm \sqrt{d^2 - 2 \cdot \left(\frac{M_d}{b_w \cdot \alpha_c \cdot f_{cd}}\right)}}{\lambda}
+\end{equation}
+
+\begin{equation}
+    A_s = \frac{M_d}{z \cdot f_{yd}}
+\end{equation}
+
+\begin{equation}
+    \frac{x}{d} = \frac{\varepsilon_{cu}}{\varepsilon_{cu} + \varepsilon_s}
+\end{equation}
+
+em que:
+
+\begin{enumerate}[label=\alph*)]
+\item $F_s$ = força resultante na armadura de tração;
+
+\item $F_c$ = força resultante na zona comprimida de concreto;
+
+\item $M_d$ = momento fletor de cálculo solicitante;
+
+\item $z$ = braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto);
+
+\item $\alpha_c$ = coeficiente que reduz a resistência do concreto conforme o grupo (ex: $0{,}85$ para o Grupo I);
+
+\item $f_{cd}$ = resistência de cálculo do concreto à compressão;
+
+\item $b_w$ = largura da seção transversal da viga;
+
+\item $\lambda$ = coeficiente que define a altura do bloco retangular comprimido de concreto (ex: $0{,}8$ para o Grupo I);
+
+\item $x$ = altura da linha neutra (profundidade da zona comprimida);
+
+\item $d$ = altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração);
+
+\item $A_s$ = área da seção transversal da armadura longitudinal de tração;
+
+\item $f_{yd}$ = resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$);
+
+\item $\varepsilon_{cu}$ = deformação específica última do concreto na compressão;
+
+\item $\varepsilon_s$ = deformação específica na armadura de tração.
+\end{enumerate}
+
+
+
 
 
 
