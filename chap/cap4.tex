@@ -220,16 +220,117 @@ em que:
 
 Conforme \citeonline{carvalho2014calculo}, o dimensionamento é feito no estado limite último, exigindo que a seção mais solicitada alcance as deformações limites dos materiais, ou seja, a falha estrutural pode ocorrer tanto pelo esmagamento do concreto comprimido quanto pelo alongamento excessivo da armadura tracionada.
 
-As armaduras longitudinais são dimensionadas por flexão simples nas regiões da viga onde o esforço normal é nulo e flexão composta em regiões submetidas a esforços de flexo-tração ou flexo-compressão. Os dimensionamentos das armaduras longitudinais são realizados considerando um único plano de flexão (flexão normal), não sendo considerada a flexão oblíqua. Para o dimensionamento foram considerados os seguintes critérios:
+As armaduras longitudinais são dimensionadas por flexão simples nas regiões da viga onde o esforço normal é nulo e por flexão composta em regiões submetidas a esforços de flexo-tração ou flexo-compressão. Os dimensionamentos das armaduras longitudinais são realizados considerando um único plano de flexão (flexão normal), não sendo considerada a flexão oblíqua. Foram adotadas as hipóteses estabelecidas pela NBR 6118 \citeonline{ABNT_NBR6118_2026} para o dimensionamento no estado limite último (ELU):
 
 \begin{enumerate}[label=\alph*)]
-    \item o dimensionamento estrutural abrange classes de concreto do Grupo I (de C20 a C50) e do Grupo II (de C50 a C90);
-    \item para garantir um comportamento dútil adequado da viga, foram respeitados os limites recomendados pela NBR 6118 \citeonline{ABNT_NBR6118_2026} quanto à profundidade relativa da linha neutra: $x/d \le 0{,}45$ para concretos com $f_{ck} \le 50\text{ MPa}$ e $x/d \le 0{,}35$ para concretos com $f_{ck} \le 90\text{ MPa}$.
+    \item até a ruptura as seções transversais permanecem planas e perpendiculares ao eixo da viga, ou seja, a hipótese de Euler-Bernoulli é válida;
+    \item as armaduras longitudinais, tanto de tração quanto de compressão, apresentam a mesma deformação do concreto ao seu redor, devido à aderência entre os materiais;
+    \item são desprezadas as tensões de tração no concreto, normais à seção transversal, no ELU;
+    \item a distribuição de tensões no concreto é feita de acordo com o diagrama idealizado curvo e retangular conforme a figura \ref{Fig.4.6}, podendo ser substituído pelo retângulo de profundidade \(y = \lambda x\);
+    \item a tensão nas armaduras é obtida a partir dos diagramas tensão-deformação conforme a figura \ref{Fig.4.7};
+    \item para garantir boas condições de dutilidade na viga, foram respeitados os limites quanto à profundidade relativa da linha neutra: $x/d \le 0{,}45$ para concretos com $f_{ck} \le 50\text{ MPa}$ e $x/d \le 0{,}35$ para concretos com $f_{ck} \le 90\text{ MPa}$;
+    \item no estado limite último, a distribuição das deformações na seção transversal ocorre conforme a figura \ref{Fig.4.8}.
 \end{enumerate}
+
+O dimensionamento estrutural abrange classes de concreto do Grupo I (de C20 a C50) e do Grupo II (de C50 a C90). Além disso, é adotada a área mínima de armadura de tração para casos em que a área de aço obtida pelo dimensionamento for inferior ao mínimo estabelecido pela NBR 6118 \citeonline{ABNT_NBR6118_2026}. A armadura mínima é determinada pelo dimensionamento da seção a um momento fletor mínimo dado pela expressão \ref{eq:armadura_minima}.
+
+\begin{equation}
+M_{d,\min} = 0,8W_0f_{ctk,\mathrm{sup}}
+\label{eq:armadura_minima}
+\end{equation}
+
+onde:
+
+\begin{enumerate}[label=\alph*)]
+    \item $M_{d,\min}$ é o momento fletor mínimo de cálculo;
+    \item $W_0$ é o módulo de resistência da seção transversal bruta de concreto, relativo à fibra mais tracionada;
+    \item $f_{ctk,\mathrm{sup}}$ é a resistência característica superior do concreto à tração.
+\end{enumerate}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.6}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Diagrama tensão-deformação idealizado do concreto
+    \end{minipage}
+
+    \includegraphics[scale=1.5]{compressao.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: NBR 6118 \citeonline{ABNT_NBR6118_2026}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.7}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Diagrama tensão-deformação para aços de armaduras passivas
+    \end{minipage}
+
+    \includegraphics[scale=1.5]{diagrama_aço.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: NBR 6118 \citeonline{ABNT_NBR6118_2026}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.8}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Domínios de deformação no ELU
+    \end{minipage}
+
+    \includegraphics[scale=1.3]{dominios.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: NBR 6118 \citeonline{ABNT_NBR6118_2026}
+    \end{minipage}
+\end{figure}
+
+A NBR 6118 \citeonline[p.~124]{ABNT_NBR6118_2026} define os domínios de deformação apresentados a seguir:
+
+\begin{citacao}
+\noindent Ruptura convencional por deformação plástica excessiva:
+
+\noindent - reta a: tração uniforme;
+
+\noindent - domínio 1: tração não uniforme, sem compressão;
+
+\noindent - domínio 2: flexão simples ou composta sem ruptura à compressão do
+concreto ($\varepsilon_c < \varepsilon_{cu}$ e com o máximo alongamento permitido).
+
+\noindent Ruptura convencional por encurtamento-limite do concreto:
+
+\noindent - domínio 3: flexão simples (seção subarmada) ou composta com ruptura à
+compressão do concreto e com escoamento do aço ($\varepsilon_s \geq \varepsilon_{yd}$);
+
+\noindent - domínio 4: flexão simples (seção superarmada) ou composta com ruptura à
+compressão do concreto e aço tracionado sem escoamento ($\varepsilon_s < \varepsilon_{yd}$);
+
+\noindent - domínio 4a: flexão composta com armaduras comprimidas;
+
+\noindent - domínio 5: compressão não uniforme, sem tração;
+
+\noindent - reta b: compressão uniforme.
+\end{citacao}
 
 \subsection{Flexão Simples}
 
-Segundo os autores, o cálculo da quantidade de armadura longitudinal necessária é realizado a partir do equilíbrio das forças atuantes na seção. Conhecendo a resistência característica do concreto ($f_{ck}$), largura da seção transversal ($b_{w}$), altura útil ($d$), tipo de aço ($f_{yk}$) e o momento de cálculo ($M_{d}$ = $1,4M$), é possível
+Segundo \citeonline{carvalho2014calculo}, o cálculo da quantidade de armadura longitudinal necessária é realizado a partir do equilíbrio das forças atuantes na seção. Conhecendo a resistência característica do concreto ($f_{ck}$), largura da seção transversal ($b_{w}$), altura útil ($d$), tipo de aço ($f_{yk}$) e o momento de cálculo ($M_{d}$ = $1,4M$), é possível
 determinar a área da armadura longitudinal necessária ($A_{s}$) para que o momento seja resistido por um elemento de seção transversal de concreto armado. O equilíbrio das forças normais atuantes na seção é dado pela igualdade entre a força de compressão do concreto ($F_{c}$) e a força de tração da armadura ($F_{s}$). O equilíbrio dos momentos é dado pela igualdade entre o momento das forças internas em relação a qualquer ponto (no caso, em relação ao C.G. da armadura) e o momento externo de cálculo. A seguir é apresentado o equacionamento para concretos de qualquer grupo:
 
 \begin{equation}
