@@ -29,7 +29,7 @@
         4.4.1 - Modelo I
         4.4.2 - Modelo II
 
-5 - Implementação do Software
+5 - Descrição do software
 
     5.1 Linguagem e estrutura do Software
     5.2 Utilização do Software (dados de entrada)
