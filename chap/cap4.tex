@@ -53,9 +53,9 @@ Segundo \citeonline{Soriano2005}, o método da rigidez consiste na formulação 
 em que:
 
 \begin{enumerate}[label=\alph*)]
-    \item $\mathbf{K}$ = matriz de rigidez da estrutura;
-    \item $\mathbf{U}$ = vetor de deslocamentos da estrutura;
-    \item $\mathbf{F}$ = vetor de forças nodais da estrutura.
+    \item $\mathbf{K}$ é a matriz de rigidez da estrutura;
+    \item $\mathbf{U}$ é o vetor de deslocamentos da estrutura;
+    \item $\mathbf{F}$ é o vetor de forças nodais da estrutura.
 \end{enumerate}
 
 A figura \ref{Fig.4.2} a seguir apresenta uma estrutura formada por elementos de viga e a figura \ref{Fig.4.3} demonstra a montagem da matriz de rigidez da estrutura a partir da adição direta das matrizes de rigidez dos elementos.
@@ -141,11 +141,11 @@ Na formulação do método da rigidez para um elemento de pórtico plano, são c
 em que:
 
 \begin{enumerate}[label=\alph*)]
-    \item $\mathbf{k}$ = matriz de rigidez da barra no sistema de coordenadas local;
-    \item $E$ = módulo de elasticidade;
-    \item $A$ = área da seção transversal;
-    \item $I$ = momento de inércia da seção transversal;
-    \item $L$ = comprimento da barra.
+    \item $\mathbf{k}$ é a matriz de rigidez da barra no sistema de coordenadas local;
+    \item $E$ é o módulo de elasticidade;
+    \item $A$ é a área da seção transversal;
+    \item $I$ é o momento de inércia da seção transversal;
+    \item $L$ é o comprimento da barra.
 \end{enumerate}
 
 \subsection{Transformação dos Sistemas de Coordenadas}
@@ -196,10 +196,10 @@ Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento
 em que:
 
 \begin{enumerate}[label=\alph*)]
-    \item $\mathbf{f_{G}}$ = vetor de forças nodais da barra no sistema de coordenadas global;
-    \item $\mathbf{f}$ = vetor de forças nodais da barra no sistema de coordenadas local;
-    \item $\mathbf{{R}}$ = matriz de rotação;
-    \item $\mathbf{{R}^T}$ = matriz de rotação transposta.
+    \item $\mathbf{f_{G}}$ é o vetor de forças nodais da barra no sistema de coordenadas global;
+    \item $\mathbf{f}$ é o vetor de forças nodais da barra no sistema de coordenadas local;
+    \item $\mathbf{{R}}$ é a matriz de rotação;
+    \item $\mathbf{{R}^T}$ é a matriz de rotação transposta.
 \end{enumerate}
 
 \begin{equation}
@@ -210,10 +210,10 @@ em que:
 em que:
 
 \begin{enumerate}[label=\alph*)]
-    \item $\mathbf{k}$ = matriz de rigidez da barra no sistema de coordenadas local;
-    \item $\mathbf{k_{G}}$ = matriz de rigidez da barra no sistema de coordenadas global;
-    \item $\mathbf{{R}}$ = matriz de rotação;
-    \item $\mathbf{{R}^T}$ = matriz de rotação transposta.
+    \item $\mathbf{k}$ é a matriz de rigidez da barra no sistema de coordenadas local;
+    \item $\mathbf{k_{G}}$ é a matriz de rigidez da barra no sistema de coordenadas global;
+    \item $\mathbf{{R}}$ é a matriz de rotação;
+    \item $\mathbf{{R}^T}$ é a matriz de rotação transposta.
 \end{enumerate}
 
 \section{Dimensionamento das Armaduras Longitudinais}
@@ -376,34 +376,79 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
 em que:
 
 \begin{enumerate}[label=\alph*)]
-\item $F_s$ = força resultante na armadura de tração;
+\item $F_s$ é a força resultante na armadura de tração;
 
-\item $F_c$ = força resultante na zona comprimida de concreto;
+\item $F_c$ é a força resultante na zona comprimida de concreto;
 
-\item $M_d$ = momento fletor de cálculo solicitante;
+\item $M_d$ é o momento fletor de cálculo solicitante;
 
-\item $z$ = braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto);
+\item $z$ é o braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto);
 
-\item $\alpha_c$ = coeficiente que reduz a resistência do concreto conforme o grupo (ex: $0{,}85$ para o Grupo I);
+\item $\alpha_c$ é o coeficiente que reduz a resistência do concreto conforme o grupo (ex: $0{,}85$ para o Grupo I);
 
-\item $f_{cd}$ = resistência de cálculo do concreto à compressão;
+\item $f_{cd}$ é a resistência de cálculo do concreto à compressão;
 
-\item $b_w$ = largura da seção transversal da viga;
+\item $b_w$ é a largura da seção transversal da viga;
 
-\item $\lambda$ = coeficiente que define a altura do bloco retangular comprimido de concreto (ex: $0{,}8$ para o Grupo I);
+\item $\lambda$ é o coeficiente que define a altura do bloco retangular comprimido de concreto (ex: $0{,}8$ para o Grupo I);
 
-\item $x$ = altura da linha neutra (profundidade da zona comprimida);
+\item $x$ é a altura da linha neutra;
 
-\item $d$ = altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração);
+\item $d$ é a altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração);
 
-\item $A_s$ = área da seção transversal da armadura longitudinal de tração;
+\item $A_s$ é a área da seção transversal da armadura longitudinal de tração;
 
-\item $f_{yd}$ = resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$);
+\item $f_{yd}$ é a resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$);
 
-\item $\varepsilon_{cu}$ = deformação específica última do concreto na compressão;
+\item $\varepsilon_{cu}$ é a deformação específica última do concreto na compressão;
 
-\item $\varepsilon_s$ = deformação específica na armadura de tração.
+\item $\varepsilon_s$ é a deformação específica na armadura de tração.
 \end{enumerate}
+
+\subsubsection{Armadura Dupla}
+
+Em casos em que não é possível atender os limites da posição da linha neutra ($x/d$) estabelecidos pela NBR 6118 \citeonline{ABNT_NBR6118_2026}, é necessário adicionar uma parcela de armadura comprimida. Para isso, é determinado o $M_{d,\mathrm{lim}}$ que a seção consegue resistir com a armadura tracionada, atendendo a limitação da norma. A diferença entre o momento de cálculo e o momento limite da seção é resistida pela armadura comprimida, e para que seja mantido o equilíbrio, por uma armadura adicional de tração. A equação \ref{eq:armadura_comprimida} apresenta o cálculo da área da armadura comprimida e a equação \ref{eq:armadura_tracionada} apresenta o cálculo da área da armadura tracionada para os casos de armadura dupla.
+
+\begin{equation}
+A_s = \frac{M_{d,\mathrm{lim}}}{z \cdot f_{yd}} + \frac{M_d - M_{d,\mathrm{lim}}}{z \cdot f_{yd}}
+\label{eq:armadura_tracionada}
+\end{equation}
+
+\begin{equation}
+A_{s2} = \frac{M_d - M_{d,\mathrm{lim}}}{\sigma_2\cdot(d-d')}
+\label{eq:armadura_comprimida}
+\end{equation}
+
+A tensão na armadura comprimida ($\sigma_2$) é determinada a partir da deformação específica da armadura comprimida ($\varepsilon_2$), apresentada na equação \ref{eq:deformacao_armadura_comprimida}.
+
+\begin{equation}
+\varepsilon_2=\varepsilon_{cu}\frac{x-d'}{x}
+\label{eq:deformacao_armadura_comprimida}
+\end{equation}
+
+\begin{enumerate}[label=\alph*)]
+    \item $\varepsilon_2$ é a deformação específica na armadura comprimida;
+    \item $\varepsilon_{cu}$ é o encurtamento último do concreto;
+    \item $d'$ é a distância da fibra mais comprimida ao centro de gravidade da armadura comprimida;
+    \item $x$ é a altura da linha neutra.
+\end{enumerate}
+
+A tensão $\sigma_2$ pode assumir diferentes valores conforme a deformação $\varepsilon_2$. Isso ocorre porque quando o aço atinge a deformação de escoamento ($\varepsilon_{yd}$), sua tensão permanece limitada à resistência de cálculo ao escoamento ($f_{yd}$).
+
+\begin{equation}
+\sigma_2=
+\begin{cases}
+E_s\varepsilon_2, & \varepsilon_2\leq\varepsilon_{yd}\\
+f_{yd}, & \varepsilon_2>\varepsilon_{yd}
+\end{cases}
+\end{equation}
+
+em que a deformação de escoamento é dada por:
+
+\begin{equation}
+\varepsilon_{yd}=\frac{f_{yd}}{E_s}
+\end{equation}
+
 
 
 
