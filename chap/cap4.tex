@@ -346,7 +346,7 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
 \end{equation}
 
 \begin{equation}
-    F_c = (\alpha_c \cdot f_{cd}) \cdot (b_w) \cdot (\lambda \cdot x)
+    F_c = (\alpha_c \cdot \eta_c \cdot f_{cd}) \cdot (b_w) \cdot (\lambda \cdot x)
 \end{equation}
 
 \begin{equation}
@@ -354,15 +354,15 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
 \end{equation}
 
 \begin{equation}
-    M_d = b_w \cdot \alpha_c \cdot f_{cd} \cdot \lambda \cdot x \cdot (d - 0{,}5 \cdot \lambda \cdot x)
+    M_d = b_w \cdot \alpha_c \cdot \eta_c \cdot f_{cd} \cdot \lambda \cdot x \cdot (d - 0{,}5 \cdot \lambda \cdot x)
 \end{equation}
 
 \begin{equation}
-    M_d = (\lambda \cdot x \cdot d - 0{,}5 \cdot \lambda^2 \cdot x^2) \cdot b_w \cdot \alpha_c \cdot f_{cd}
+    M_d = (\lambda \cdot x \cdot d - 0{,}5 \cdot \lambda^2 \cdot x^2) \cdot b_w \cdot \alpha_c \cdot \eta_c \cdot f_{cd}
 \end{equation}
 
 \begin{equation}
-    x = \frac{d \pm \sqrt{d^2 - 2 \cdot \left(\frac{M_d}{b_w \cdot \alpha_c \cdot f_{cd}}\right)}}{\lambda}
+    x = \frac{d \pm \sqrt{d^2 - 2 \cdot \left(\frac{M_d}{b_w \cdot \alpha_c \cdot \eta_c \cdot f_{cd}}\right)}}{\lambda}
 \end{equation}
 
 \begin{equation}
@@ -405,12 +405,12 @@ em que:
 \item $\varepsilon_s$ é a deformação específica na armadura de tração.
 \end{enumerate}
 
-\subsubsection{Armadura Dupla}
+Os parâmetros $\alpha_c$, $\lambda$ e $\eta_c$ variam de acorco com a resistência característica do concreto ($f_{ck}$). Da mesma forma, a deformação específica-limite $\varepsilon_{cu}$ apresenta valores distintos para os concretos do Grupo I e do Grupo II. Seus valores são determinados conforme as equações estabelecidas pela NBR 6118 \citeonline{ABNT_NBR6118_2026}.
 
-Em casos em que não é possível atender os limites da posição da linha neutra ($x/d$) estabelecidos pela NBR 6118 \citeonline{ABNT_NBR6118_2026}, é necessário adicionar uma parcela de armadura comprimida. Para isso, é determinado o $M_{d,\mathrm{lim}}$ que a seção consegue resistir com a armadura tracionada, atendendo a limitação da norma. A diferença entre o momento de cálculo e o momento limite da seção é resistida pela armadura comprimida, e para que seja mantido o equilíbrio, por uma armadura adicional de tração. A equação \ref{eq:armadura_comprimida} apresenta o cálculo da área da armadura comprimida e a equação \ref{eq:armadura_tracionada} apresenta o cálculo da área da armadura tracionada para os casos de armadura dupla.
+Quando os limites estabelecidos pela NBR 6118 \citeonline{ABNT_NBR6118_2026} para a posição da linha neutra ($x/d$) não são atendidos, é necessário adicionar armadura de compressão. Para isso, é determinado o $M_{d,\mathrm{lim}}$ que a seção consegue resistir com a armadura no limite do critério da norma, sendo $x = 0{,}35d$ para o Grupo I e $x = 0{,}45d$ para o Grupo II. A diferença entre o momento de cálculo e o momento limite da seção é resistida pela armadura comprimida, e para que seja mantido o equilíbrio, por uma armadura adicional de tração. A equação \ref{eq:armadura_comprimida} apresenta o cálculo da área da armadura comprimida e a equação \ref{eq:armadura_tracionada} apresenta o cálculo da área da armadura tracionada para os casos de armadura dupla.
 
 \begin{equation}
-A_s = \frac{M_{d,\mathrm{lim}}}{z \cdot f_{yd}} + \frac{M_d - M_{d,\mathrm{lim}}}{z \cdot f_{yd}}
+A_s = \frac{M_{d,\mathrm{lim}}}{(d - 0{,}5 \cdot \lambda \cdot x_{\mathrm{lim}}) \cdot f_{yd}} + \frac{M_d - M_{d,\mathrm{lim}}}{(d - d') \cdot f_{yd}}
 \label{eq:armadura_tracionada}
 \end{equation}
 
@@ -419,7 +419,7 @@ A_{s2} = \frac{M_d - M_{d,\mathrm{lim}}}{\sigma_2\cdot(d-d')}
 \label{eq:armadura_comprimida}
 \end{equation}
 
-A tensão na armadura comprimida ($\sigma_2$) é determinada a partir da deformação específica da armadura comprimida ($\varepsilon_2$), apresentada na equação \ref{eq:deformacao_armadura_comprimida}.
+É preciso ainda verificar se a armadura comprimida atingiu a deformação de escoamento ou não, pois a região comprimida da seção sofre deformações menores que a tracionada. A tensão na armadura comprimida ($\sigma_2$) é determinada a partir da deformação específica da armadura comprimida ($\varepsilon_2$), apresentada na equação \ref{eq:deformacao_armadura_comprimida}.
 
 \begin{equation}
 \varepsilon_2=\varepsilon_{cu}\frac{x-d'}{x}
