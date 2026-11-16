@@ -58,7 +58,7 @@ em que:
     \item $\mathbf{F}$ é o vetor de forças nodais da estrutura.
 \end{enumerate}
 
-A figura \ref{Fig.4.2} a seguir apresenta uma estrutura formada por elementos de viga e a figura \ref{Fig.4.3} demonstra a montagem da matriz de rigidez da estrutura a partir da adição direta das matrizes de rigidez dos elementos.
+A figura \ref{Fig.4.2} a seguir apresenta um exemplo de uma estrutura formada por elementos de viga.
 
 \begin{figure}[htb]
     \centering
@@ -77,6 +77,8 @@ A figura \ref{Fig.4.2} a seguir apresenta uma estrutura formada por elementos de
         Fonte: Adaptado de \citeonline{Weaver2018}
     \end{minipage}
 \end{figure}
+
+A figura \ref{Fig.4.3} demonstra a montagem da matriz de rigidez da estrutura a partir da adição direta das matrizes de rigidez dos elementos.
 
 \begin{figure}[htb]
     \centering
@@ -98,12 +100,7 @@ A figura \ref{Fig.4.2} a seguir apresenta uma estrutura formada por elementos de
 
 Para que o sistema possa ser resolvido, as condições de contorno são introduzidas impondo os deslocamentos conhecidos, geralmente nulos, nos graus de liberdade restringidos. Dessa forma, a matriz passa a ser não singular e a resolução do sistema de equações resultante fornece os deslocamentos nodais não restringidos. A partir desses deslocamentos é possivel determinar os esforços internos nas extremidades das barras e as reações nos apoios da estrutura.
 
-O significado físico da matriz de rigidez pode ser compreendido a partir da aplicação individual de deslocamentos unitários (translações e rotações) em cada grau de liberdade, mantendo os demais deslocamentos nulos. Assim, os coeficientes $k_{ij}$ da matriz representam a força nodal desenvolvida na direção do grau de liberdade (i) em resposta à imposição de um deslocamento unitário no grau de liberdade (j), mantendo os demais deslocamentos nodais nulos. Dessa forma, a interpretação dos índices da matriz pode ser descrita como:
-
-\begin{enumerate}[label=\alph*)]
-\item coluna (j): identifica o grau de liberdade no qual é imposto o deslocamento unitário;
-\item linha (i): identifica o grau de liberdade no qual é determinada a força nodal correspondente.
-\end{enumerate}
+O significado físico da matriz de rigidez pode ser compreendido a partir da aplicação individual de deslocamentos unitários (translações e rotações) em cada grau de liberdade, mantendo os demais deslocamentos nulos. Assim, os coeficientes $k_{ij}$ da matriz representam a força nodal desenvolvida na direção do grau de liberdade (i) em resposta à imposição de um deslocamento unitário no grau de liberdade (j), mantendo os demais deslocamentos nodais nulos.
 
 Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Portanto, os vetores de forças e de deslocamentos nodais são de ordem 6, e a matriz de rigidez do elemento, $6 \times 6$. A figura \ref{Fig.4.4} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
 
@@ -147,8 +144,6 @@ em que:
     \item $I$ é o momento de inércia da seção transversal;
     \item $L$ é o comprimento da barra.
 \end{enumerate}
-
-\subsection{Transformação dos Sistemas de Coordenadas}
 
 Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento dos eixos locais para os eixos da estrutura, é necessária a matriz de rotação $\mathbf{R}$ conforme ilustrado na figura \ref{Fig.4.5}. A matriz de rotação transposta $\mathbf{R}^T$ transforma os vetores de forças e deslocamentos nodais dos elementos do sistema local de coordenadas para o global, e de forma inversa a matriz $\mathbf{R}$ transforma os vetores do sistema global para o local conforme as equações \ref{eq:transformação_G_L} e \ref{eq:transformação_L_G}. A equação \ref{eq:kG} demonstra a transformação da matriz de rigidez para o sistema de coordenadas global.
 
@@ -227,27 +222,8 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
     \item as armaduras longitudinais, tanto de tração quanto de compressão, apresentam a mesma deformação do concreto ao seu redor, devido à aderência entre os materiais;
     \item são desprezadas as tensões de tração no concreto, normais à seção transversal, no ELU;
     \item a distribuição de tensões no concreto é feita de acordo com o diagrama idealizado curvo e retangular conforme a figura \ref{Fig.4.6}, podendo ser substituído pelo retângulo de profundidade \(y = \lambda x\);
-    \item a tensão nas armaduras é obtida a partir dos diagramas tensão-deformação conforme a figura \ref{Fig.4.7};
-    \item para garantir boas condições de dutilidade na viga, foram respeitados os limites quanto à profundidade relativa da linha neutra: $x/d \le 0{,}45$ para concretos com $f_{ck} \le 50\text{ MPa}$ e $x/d \le 0{,}35$ para concretos com $f_{ck} \le 90\text{ MPa}$;
-    \item no estado limite último, a distribuição das deformações na seção transversal ocorre conforme a figura \ref{Fig.4.8}.
-\end{enumerate}
-
-O dimensionamento estrutural abrange classes de concreto do Grupo I (de C20 a C50) e do Grupo II (de C50 a C90). Além disso, é adotada a área mínima de armadura de tração para casos em que a área de aço obtida pelo dimensionamento for inferior ao mínimo estabelecido pela NBR 6118 \citeonline{ABNT_NBR6118_2026}. A armadura mínima é determinada pelo dimensionamento da seção a um momento fletor mínimo dado pela expressão \ref{eq:armadura_minima}.
-
-\begin{equation}
-M_{d,\min} = 0,8W_0f_{ctk,\mathrm{sup}}
-\label{eq:armadura_minima}
-\end{equation}
-
-onde:
-
-\begin{enumerate}[label=\alph*)]
-    \item $M_{d,\min}$ é o momento fletor mínimo de cálculo;
-    \item $W_0$ é o módulo de resistência da seção transversal bruta de concreto, relativo à fibra mais tracionada;
-    \item $f_{ctk,\mathrm{sup}}$ é a resistência característica superior do concreto à tração.
-\end{enumerate}
-
-\begin{figure}[htb]
+    
+    \begin{figure}[htb]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.6}
@@ -257,15 +233,17 @@ onde:
         Figura \thefigure: Diagrama tensão-deformação idealizado do concreto
     \end{minipage}
 
-    \includegraphics[scale=1.5]{compressao.png}
+    \includegraphics[scale=1]{compressao.png}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
         Fonte: NBR 6118 \citeonline{ABNT_NBR6118_2026}
     \end{minipage}
-\end{figure}
+    \end{figure}
 
-\begin{figure}[htb]
+    \item a tensão nas armaduras é obtida a partir dos diagramas tensão-deformação conforme a figura \ref{Fig.4.7};
+    
+    \begin{figure}[htb]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.7}
@@ -275,13 +253,17 @@ onde:
         Figura \thefigure: Diagrama tensão-deformação para aços de armaduras passivas
     \end{minipage}
 
-    \includegraphics[scale=1.5]{diagrama_aço.png}
+    \includegraphics[scale=1]{diagrama_aço.png}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
         Fonte: NBR 6118 \citeonline{ABNT_NBR6118_2026}
     \end{minipage}
-\end{figure}
+    \end{figure}
+
+    \item para garantir boas condições de dutilidade na viga, foram respeitados os limites quanto à profundidade relativa da linha neutra: $x/d \le 0{,}45$ para concretos com $f_{ck} \le 50\text{ MPa}$ e $x/d \le 0{,}35$ para concretos com $f_{ck} \le 90\text{ MPa}$;
+    \item no estado limite último, a distribuição das deformações na seção transversal ocorre conforme a figura \ref{Fig.4.8}.
+\end{enumerate}
 
 \begin{figure}[htb]
     \centering
@@ -328,6 +310,21 @@ compressão do concreto e aço tracionado sem escoamento ($\varepsilon_s < \vare
 \noindent - reta b: compressão uniforme.
 \end{citacao}
 
+O dimensionamento estrutural abrange classes de concreto do Grupo I (de C20 a C50) e do Grupo II (de C50 a C90). Além disso, é adotada a área mínima de armadura de tração para casos em que a área de aço obtida pelo dimensionamento for inferior ao mínimo estabelecido pela NBR 6118 \citeonline{ABNT_NBR6118_2026}. A armadura mínima é determinada pelo dimensionamento da seção a um momento fletor mínimo dado pela expressão \ref{eq:armadura_minima}.
+
+\begin{equation}
+M_{d,\min} = 0,8W_0f_{ctk,\mathrm{sup}}
+\label{eq:armadura_minima}
+\end{equation}
+
+onde:
+
+\begin{enumerate}[label=\alph*)]
+    \item $M_{d,\min}$ é o momento fletor mínimo de cálculo;
+    \item $W_0$ é o módulo de resistência da seção transversal bruta de concreto, relativo à fibra mais tracionada;
+    \item $f_{ctk,\mathrm{sup}}$ é a resistência característica superior do concreto à tração.
+\end{enumerate}
+
 \subsection{Flexão Simples}
 
 Segundo \citeonline{carvalho2014calculo}, o cálculo da quantidade de armadura longitudinal necessária é realizado a partir do equilíbrio das forças atuantes na seção. Conhecendo a resistência característica do concreto ($f_{ck}$), largura da seção transversal ($b_{w}$), altura útil ($d$), tipo de aço ($f_{yk}$) e o momento de cálculo ($M_{d}$ = $1,4M$), é possível
@@ -358,10 +355,6 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
 \end{equation}
 
 \begin{equation}
-    M_d = (\lambda \cdot x \cdot d - 0{,}5 \cdot \lambda^2 \cdot x^2) \cdot b_w \cdot \alpha_c \cdot \eta_c \cdot f_{cd}
-\end{equation}
-
-\begin{equation}
     x = \frac{d \pm \sqrt{d^2 - 2 \cdot \left(\frac{M_d}{b_w \cdot \alpha_c \cdot \eta_c \cdot f_{cd}}\right)}}{\lambda}
 \end{equation}
 
@@ -375,35 +368,7 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
 
 em que:
 
-\begin{enumerate}[label=\alph*)]
-\item $F_s$ é a força resultante na armadura de tração;
-
-\item $F_c$ é a força resultante na zona comprimida de concreto;
-
-\item $M_d$ é o momento fletor de cálculo solicitante;
-
-\item $z$ é o braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto);
-
-\item $\alpha_c$ é o coeficiente que reduz a resistência do concreto conforme o grupo (ex: $0{,}85$ para o Grupo I);
-
-\item $f_{cd}$ é a resistência de cálculo do concreto à compressão;
-
-\item $b_w$ é a largura da seção transversal da viga;
-
-\item $\lambda$ é o coeficiente que define a altura do bloco retangular comprimido de concreto (ex: $0{,}8$ para o Grupo I);
-
-\item $x$ é a altura da linha neutra;
-
-\item $d$ é a altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração);
-
-\item $A_s$ é a área da seção transversal da armadura longitudinal de tração;
-
-\item $f_{yd}$ é a resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$);
-
-\item $\varepsilon_{cu}$ é a deformação específica última do concreto na compressão;
-
-\item $\varepsilon_s$ é a deformação específica na armadura de tração.
-\end{enumerate}
+$F_s$ é a força resultante na armadura de tração, $F_c$ é a força resultante na zona comprimida de concreto, $M_d$ é o momento fletor de cálculo solicitante, $z$ é o braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto), \(\eta_c\) é o coeficiente redutor da resistência do concreto, \(\alpha_c\) é o coeficiente de ajuste da tensão de compressão do concreto, $f_{cd}$ é a resistência de cálculo do concreto à compressão, $b_w$ é a largura da seção transversal da viga, $\lambda$ é o coeficiente que define a altura do bloco retangular comprimido de concreto, $x$ é a profundidade da linha neutra, $d$ é a altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração), $A_s$ é a área da seção transversal da armadura longitudinal de tração, $f_{yd}$ é a resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$), $\varepsilon_{cu}$ é a deformação específica última do concreto na compressão e $\varepsilon_s$ é a deformação específica na armadura de tração.
 
 Os parâmetros $\alpha_c$, $\lambda$ e $\eta_c$ variam de acorco com a resistência característica do concreto ($f_{ck}$). Da mesma forma, a deformação específica-limite $\varepsilon_{cu}$ apresenta valores distintos para os concretos do Grupo I e do Grupo II. Seus valores são determinados conforme as equações estabelecidas pela NBR 6118 \citeonline{ABNT_NBR6118_2026}.
 
@@ -448,6 +413,333 @@ em que a deformação de escoamento é dada por:
 \begin{equation}
 \varepsilon_{yd}=\frac{f_{yd}}{E_s}
 \end{equation}
+
+\subsection{Flexo-Compressão Normal}
+
+Segundo \citeonline{filho2014flexaocomposta}, a determinação de uma solução para o dimensionamento à flexo-compressão normal exige arbitrar uma relação adicional entre as incógnitas. Neste trabalho, adotou-se a solução com armaduras assimétricas.
+
+Para definir os parâmetros a serem arbitrados, os problemas de flexo-compressão são divididos em três situações:
+
+\begin{enumerate}[label=\alph*)]
+    \item Flexo-compressão com grande excentricidade: casos em que a armadura tracionada é diferente de zero, podendo ser necessária também armadura comprimida (domínios 2 ou 3).
+
+    \item Flexo-compressão com pequena excentricidade: casos em que apenas a armadura comprimida é necessária (domínios 4, 4a ou 5).
+
+    \item Compressão composta: casos em que são necessárias duas armaduras comprimidas (domínio 5).
+\end{enumerate}
+
+No caso de flexo-compressão com grande excentricidade, a situação de dimensionamento deve ocorrer nos domínios 2 ou 3, para garantir uma solução econômica, com $\varepsilon_1 \geq \varepsilon_{yd}$ e, consequentemente, $\sigma_1 = f_{yd}$. Para seções com armadura
+simples, essa condição é satisfeita quando $x < x_{\mathrm{lim}}$,
+o que equivale a $N_d e_1 \leq M_{d,\mathrm{lim}}$. O dimensionamento é realizado a partir das equações de equilíbrio dos esforços normais e momentos fletores, apresentadas a seguir:
+
+\begin{equation}
+N_d = \alpha_c \eta_c \lambda f_{cd} b x - A_{s1} f_{yd}
+\end{equation}
+
+\begin{equation}
+N_d e_1 = \alpha_c \eta_c \lambda f_{cd} b x
+\left(d - 0,5\lambda x\right)
+\end{equation}
+
+O sistema é constituído por duas equações e duas incógnitas: a área de armadura tracionada (\(A_{s1}\)) e a profundidade da linha neutra (\(x\)).
+
+\begin{equation}
+M_{d,\mathrm{lim}} =
+\alpha_c \eta_c \lambda f_{cd} b x_{\mathrm{lim}}
+\left(d - 0,5\lambda x_{\mathrm{lim}}\right)
+\end{equation}
+
+A Figura \ref{Fig.4.9} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura simples.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.9}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Caso de armadura simples na flexo-compressão com grande excentricidade 
+    \end{minipage}
+
+    \includegraphics[scale=2]{armadura_simples.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{filho2014flexaocomposta}
+    \end{minipage}
+\end{figure}
+
+Para o caso de armadura dupla, considera-se \(x=x_{\mathrm{lim}}\). Dessa forma, o dimensionamento é realizado por meio das equações apresentadas a seguir:
+
+\begin{equation}
+N_d = \alpha_c \eta_c \lambda f_{cd} b x_{\mathrm{lim}}
++ A_{s2}\sigma_2 - A_{s1}f_{yd}
+\end{equation}
+
+\begin{equation}
+N_d e_1 = M_{d,\mathrm{lim}} + A_{s2}\sigma_2(d-d')
+\end{equation}
+
+A tensão na armadura comprimida (\(\sigma_2\)) é determinada a partir de sua deformação específica (\(\varepsilon_2\)):
+
+\begin{equation}
+\varepsilon_2 =
+\varepsilon_{cu}
+\frac{x_{\mathrm{lim}}-d'}{x_{\mathrm{lim}}}
+\end{equation}
+
+A Figura \ref{Fig.4.10} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura dupla.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.10}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Caso de armadura dupla na flexo-compressão com grande excentricidade 
+    \end{minipage}
+
+    \includegraphics[scale=2]{armadura_dupla.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{filho2014flexaocomposta}
+    \end{minipage}
+\end{figure}
+
+O equilíbrio de momentos em relação à armadura comprimida exige que
+$A_{s1}$ esteja tracionada $A_{s1}>0$, condição satisfeita quando
+$e_0 > \frac{d-d'}{2}$. Portanto, essa situação sempre será
+flexo-compressão com grande excentricidade. Fazendo o equilíbrio de momentos em relação à armadura \(A_{s2}\), tem-se:
+
+\begin{equation}
+N_d \, e_2 =
+\alpha_c \, \eta_c \, \lambda \, f_{cd} \, b \, x_{\mathrm{lim}}
+\left(0,5 \, \lambda \, x_{\mathrm{lim}} - d'\right)
+- A_{s1} \, f_{yd} \left(d - d'\right)
+\end{equation}
+
+\begin{equation}
+A_{s1} =
+\frac{
+\alpha_c \, \eta_c \, \lambda \, f_{cd} \, b \, x_{\mathrm{lim}}
+\left(0,5 \, \lambda \, x_{\mathrm{lim}} - d'\right)
+- N_d \, e_2
+}{
+f_{yd} \left(d - d'\right)
+} > 0
+\end{equation}
+
+\begin{equation}
+e_2 <
+\frac{
+\alpha_c \, \eta_c \, \lambda \, f_{cd} \, b \, x_{\mathrm{lim}}
+\left(0,5 \, \lambda \, x_{\mathrm{lim}} - d'\right)
+}{
+N_d
+}
+\end{equation}
+
+As excentricidades de $N_{d}$ são dadas pelas equações a seguir:
+
+\begin{equation}
+e_0 = \frac{M_d}{N_d}
+\end{equation}
+
+\begin{equation}
+e_1 = \frac{d - d'}{2} + e_0
+\end{equation}
+
+\begin{equation}
+e_2 = \frac{d - d'}{2} - e_0
+\end{equation}
+
+Na flexo-compressão com pequena excentricidade, considera-se apenas armadura comprimida, ou seja, $A_{s1}=0$. Nessa situação, o equilíbrio da seção é estabelecido pelas seguintes equações:
+
+\begin{equation}
+N_d = \alpha_c \eta_c \lambda f_{cd} b x + A_{s2}\sigma_2
+\label{eq:forca_normal}
+\end{equation}
+
+\begin{equation}
+N_d e_2 =
+\alpha_c \eta_c \lambda f_{cd} b x
+\left(0,5\lambda x-d'\right)
+\label{eq:equilibrio_momento_flexo_compressao}
+\end{equation}
+
+Inicialmente, determina-se a profundidade da linha neutra $x$ por meio da equação \ref{eq:equilibrio_momento_flexo_compressao}. Com esse valor, identifica-se o domínio de deformação correspondente, que pode ser 4, 4a ou 5. Em seguida, utilizando as relações de compatibilidade de deformações, determina-se a deformação da armadura $\varepsilon_{2}$ e, por meio da relação tensão-deformação do aço, sua respectiva tensão $\sigma_2$. Por fim, a área de armadura $A_{s2}$ é obtida pela equação de equilíbrio \ref{eq:forca_normal}.
+
+Na compressão composta, são necessárias duas armaduras comprimidas para equilibrar os esforços solicitantes. As equações de equilíbrio são expressas por:
+
+\begin{equation}
+N_d e_1 =
+\alpha_c \eta_c f_{cd} b h
+\left(d-0,5h\right)
++A_{s2}\sigma_2(d-d')
+\end{equation}
+
+\begin{equation}
+N_d e_2 =
+\alpha_c \eta_c f_{cd} b h
+\left(0,5h-d'\right)
++A_{s1}\sigma_1(d-d')
+\end{equation}
+
+Nesse caso, o sistema apresenta duas equações e três incógnitas: $x$, $A_{s1}$ e $A_{s2}$. Como as tensões nas armaduras dependem da profundidade da linha neutra ($x$), existem infinitas soluções possíveis para o dimensionamento. Para determinar uma solução particular, adota-se $x = +\infty$, correspondente à reta b do diagrama de deformações no estado limite último ($\varepsilon_{1} = \varepsilon_{2} = \varepsilon_{c2}$).
+
+Nos casos de flexo-compressão normal, não há necessidade teórica de armadura longitudinal quando:
+
+\begin{equation}
+N_d \leq 2\alpha_c\eta_c f_{cd}b(e_2+d')
+\end{equation}
+
+ou
+
+\begin{equation}
+e_2+d' \geq \frac{N_d}{2\alpha_c\eta_c f_{cd}b}
+\end{equation}
+
+ou
+
+\begin{equation}
+e_2 \geq \frac{N_d}{2\alpha_c\eta_c f_{cd}b}-d'
+\end{equation}
+
+Entretanto, mesmo quando essa condição é atendida, deve-se respeitar a exigência normativa de armadura longitudinal mínima, não sendo possível dispensar completamente a armadura da seção.
+
+\subsection{Flexo-tração normal}
+
+No dimensionamento à flexo-tração normal, também foi adotada a solução de armaduras assimétricas. As situações de dimensionamento são divididas em dois casos, conforme a posição da força normal em relação às armaduras: flexo-tração com grande excentricidade e flexo-tração com pequena excentricidade.
+
+A flexo-tração com grande excentricidade ocorre quando a força normal atua fora das duas armaduras. Nessa situação, o dimensionamento pode resultar em armadura simples ou dupla, conforme a relação entre o momento solicitante $N_d e_1$ e o momento limite $M_{d,\lim}$.
+
+Quando $N_d e_1 \leq M_{d,\lim}$, considera-se apenas a armadura tracionada $A_{s1}$, sendo $A_{s2}=0$. O dimensionamento é realizado pelas seguintes equações:
+
+\begin{equation}
+N_d = A_{s1}f_{yd}
+-\alpha_c\eta_c\lambda f_{cd}bx
+\label{eq:Nd}
+\end{equation}
+
+\begin{equation}
+N_d e_1 =
+\alpha_c\eta_c\lambda f_{cd}bx
+\left(d-0,5\lambda x\right)
+\label{eq:Nde1}
+\end{equation}
+
+Primeiramente, determina-se $x$ pela equação \ref{eq:Nde1}, em seguida, calcula-se a área de armadura $A_{s1}$ pela equação \ref{eq:Nd}.
+
+A Figura \ref{Fig.4.11} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura simples.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.11}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Caso de armadura simples na flexo-tração com grande excentricidade 
+    \end{minipage}
+
+    \includegraphics[scale=2]{ft_armadura_simples.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{filho2014flexaocomposta}
+    \end{minipage}
+\end{figure}
+
+Por outro lado, quando $N_d e_1 > M_{d,\lim}$, adota-se a solução com armadura dupla, fixando-se $x=x_{\lim}$. Nesse caso, as equações de equilíbrio são:
+
+\begin{equation}
+N_d = A_{s1}f_{yd}-A_{s2}\sigma_2
+-\alpha_c\eta_c\lambda f_{cd}bx_{\lim}
+\label{eq:N_d}
+\end{equation}
+
+\begin{equation}
+N_d e_1 = M_{d,\lim}
++A_{s2}\sigma_2(d-d')
+\label{eq:N_de1}
+\end{equation}
+
+A partir de $x_{\lim}$, determina-se a deformação da armadura comprimida por compatibilidade de deformações:
+
+\begin{equation}
+\varepsilon_2 =
+\varepsilon_{cu}\frac{x_{\lim}-d'}{x_{\lim}}
+\end{equation}
+
+Com essa deformação, obtém-se a tensão $\sigma_2$ pela relação tensão-deformação do aço. Em seguida, calcula-se $A_{s2}$ pela equação \ref{eq:N_de1} e $A_{s1}$ pela equação \ref{eq:N_d}.
+
+A Figura \ref{Fig.4.12} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura duplas.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.4.12}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Caso de armadura dupla na flexo-tração com grande excentricidade 
+    \end{minipage}
+
+    \includegraphics[scale=2]{ft_armadura_dupla.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{filho2014flexaocomposta}
+    \end{minipage}
+\end{figure}
+
+A flexo-tração com pequena excentricidade ocorre quando a força normal atua entre as duas armaduras, de modo que ambas ficam tracionadas. Nessa situação, as equações de equilíbrio são:
+
+\begin{equation}
+N_d e_1 = A_{s2}\sigma_2(d-d')
+\end{equation}
+
+\begin{equation}
+N_d e_2 = A_{s1}\sigma_1(d-d')
+\end{equation}
+
+Para determinar as áreas de armadura, adota-se $x = -\infty$, resultando em deformações iguais nas duas armaduras:
+
+\begin{equation}
+\varepsilon_1 = \varepsilon_2 = 10\,\text{\textperthousand}
+\end{equation}
+
+Como essas deformações são superiores à deformação de escoamento do aço, considera-se $\sigma_1=\sigma_2=f_{yd}$. Assim, as áreas das armaduras são determinadas diretamente pelas equações de equilíbrio.
+
+Para os casos de flexo-tração normal, sempre há necessidade teórica de armadura longitudinal.
+
+\section{Dimensionamento das Armaduras Transversais}
+
+O dimensionamento das armaduras transversais implementado neste trabalho contempla os Modelos de Cálculo I e II, conforme as prescrições da NBR 6118 \citeonline{ABNT_NBR6118_2026}. Ambos os modelos são considerados na rotina computacional para a determinação da armadura transversal necessária, respeitando suas respectivas hipóteses de cálculo e os critérios de resistência estabelecidos pela norma.
+
+Além disso, o dimensionamento considera as propriedades dos concretos dos grupos I e II, bem como os requisitos relativos à taxa geométrica mínima de armadura transversal dada pela equação \ref{eq:armadura_transversal_minima}.
+
+\begin{equation}
+\rho_{sw,\min} =
+\frac{A_{sw}}{b_w s \sin\alpha}
+\geq
+0,2\frac{f_{ct,m}}{f_{ywk}}
+\label{eq:armadura_transversal_minima}
+\end{equation}
+
+onde:
+
+$\rho_{sw,\min}$ é a taxa geométrica mínima de armadura transversal, $A_{sw}$ é a área da seção transversal dos ramos da armadura transversal, $b_w$ é a largura da alma da viga, $s$ é o espaçamento entre estribos, $\alpha$ é o ângulo de inclinação das armaduras transversais em relação ao eixo longitudinal da viga, $f_{ct,m}$ é a resistência média do concreto à tração, e $f_{ywk}$ é a resistência característica ao escoamento do aço da armadura transversal.
+
+\subsection{Modelo de Cálculo I}
+
+Corresponde ao modelo clássico de treliça, no qual as bielas de concreto comprimidas apresentam inclinação de \(45^\circ\) em relação ao eixo longitudinal da viga, representando o estado de cisalhamento puro. Os estribos podem apresentar inclinação em relação à horizontal entre \(45^\circ\) e \(90^\circ\), sendo dispostos de modo a acompanhar a direção das tensões principais de tração identificadas no estado de cisalhamento puro. A configuração com estribos verticais (\(\alpha = 90^\circ\)) é a de maior facilidade de montagem das armaduras.
+
+
+
+
 
 
 

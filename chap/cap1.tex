@@ -12,8 +12,52 @@
 % ----------------------------------------------------------
 
 
-A execução de aberturas em elementos estruturais é uma prática comum na construção civil. O cenário econômico atual demanda a execução de empreendimentos em prazos curtos, além do avanço tecnológico que torna os projetos cada vez mais complexos, sendo necessária a atuação de múltiplas equipes. Diante desse contexto, é inevitável que ocorram falhas e incompatibilidades. As aberturas são feitas nas estruturas, tornando possível a passagem de tubulações e a execução das instalações complementares. Por outro lado, também é comum que os furos sejam considerados no projeto, visando otimizar o espaço disponível na edificação.
+A execução de aberturas em elementos estruturais é uma prática comum na construção civil, especialmente, as aberturas em vigas que são uma necessidade da compatibilidade do projeto estrutural com outros projetos complementares. Principalmente projetos que envolvem instalações prediais, tais como, de climatização, elétricas, hidrossanitárias e de proteção contra incêndio (ver Figura \ref{Fig.1.1}).
 
-Tendo em vista a importância do tema e a alta demanda para engenheiros civis quanto ao dimensionamento de estruturas nessas condições, o trabalho consiste no desenvolvimento de um software para o dimensionamento de vigas em concreto armado com aberturas na direçãode sua largura. Para isso, serão considerados os critérios e orientações da NBR 6118 \cite{ABNT_NBR6118_2026}, norma brasileira que trata de projeto de estruturas de concreto e da forma como as aberturas devem ser abordadas nesses projetos.
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.1.1}
 
-As formas de analisar esses casos incluem métodos empíricos, que consideram restrições quanto às dimensões relativas da abertura na viga, métodos formulados a partir da teoria da elasticidade e abordagens de aplicações gerais como os modelos de bielas e tirantes ou método dos elementos finitos. O software será desenvolvido pelo método da rigidez, também conhecido como método matricial, escolhido pela facilidade de ser convertido num algoritmo computacional. O método em questão serviu como base para o desenvolvimento do método dos elementos finitos, que é reconhecido por ser uma das melhores ferramentas para a resolução de um amplo conjunto de problemas de engenharia estrutural. Segundo \citeonline{Mendonca2019}, a formulação matricial permite compreender, de forma simplificada, conceitos do método dos elementos finitos como graus de liberdade, matriz de rigidez, processo de sobreposição, sistema de equações algébricas de equilíbrio, imposição de condições de contorno, entre outros. O trabalho surgiu não só como uma tentativa de automatizar esse tipo de projeto, mas também como uma forma de explorar aplicações para o método da rigidez.
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Exemplo de aberturas em vigas
+    \end{minipage}
+
+    \includegraphics[scale=2.75]{abertura.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{Zhang2025}
+    \end{minipage}
+\end{figure}
+
+As aberturas nas vigas também evitam que esses dutos de serviços tenham que passar por baixo da viga afetando a altura da edificação para manter o pé-direito a partir do forro falso, conforme pode se ver na Figura \ref{Fig.1.2}.
+
+\begin{figure}[htb]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.1.2}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Disposição de dutos de serviço integrados à estrutura e forro falso
+    \end{minipage}
+
+    \includegraphics[scale=1.75]{duto.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: adaptado de \citeonline{MansurTan1999}
+    \end{minipage}
+\end{figure}
+
+Para evitar furações em fase de execução e eventuais reforços é muito importante considerar as aberturas ainda em fase de projeto. Contudo, ferramentas desse tipo na modelagem estrutural ainda é incipiente nos softwares de cálculo disponíveis para edificações. A modelagem muitas vezes é considerada através de métodos empíricos que não consideram a redistribuição das solicitações internas no restante da viga devido a presença da abertura. Existem  modelos mais sofisticados como método das bielas e tirantes ou método dos elementos finitos, porém são métodos que levam tempo na sua construção e análise e geralmente são reservados pelos projetistas para situações mais complexas.
+
+Aliado a essas limitações os projetos exigem cada vez menos tempo para etapa de compatibilizações o que traz a necessidade de uma ferramenta rápida para avaliar e dimensionar as armaduras da viga com aberturas. Em vista disso, esse trabalho consiste em desenvolver e propor um software para o dimensionamento de vigas em concreto armado com aberturas na direção da largura.
+
+Esse software é programado em Python e é composto por três partes: o modelo estrutural, o dimensionamento das áreas de aço e o detalhamento da armadura. O modelo estrutural adotado é um pórtico reticulado resolvido através do método da rigidez. Esse método é escolhido pela facilidade de ser convertido em um algoritmo computacional. A região da abertura é modelada de modo a permitir a distribuição das solicitações entre os banzos da abertura. Para o dimensionamento da área de aço longitudinal é adotado as prescrições normativas para o ELU com formulações de dimensionamento de seção retangular de concreto armado submetida à flexão simples (trecho da viga sem o furo), à flexo-tração (banzo tracionado) e flexo-compressão (banzo comprimido). Para a área de aço transversal, é adotada a metodologia normativa que se baseia na analogia da treliça. O detalhamento se baseia nas áreas de aço calculadas e nas prescrições normativas quanto ao escalonamento das armaduras e ancoragens.
+
+***Esse trabalho está composto pelos seguintes capítulos:***
+
+***[Antes de fechar o trabalho, quando tudo estiver pronto...apresentar cada capítulo rapidamente em um parágrafo. O nome e do que se trata.]***
