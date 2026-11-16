@@ -37,7 +37,8 @@
 
 6 - Verificação do software
 
-    6.1 Verificações parciais dos deslocamentos nodais e esforços solicitantes do modelo estrutural
+    6.1 Verificações parciais dos deslocamentos nodais e esforços solicitantes do modelo estrutural 
+        (citar o exemplo do Matrix Analysis p. 243)
     6.2 Verificações pariciais da flexão simples
     6.3 Verificações pariciais da flexo-tração
     6.4 Verificações parciais da flexo-compressão reta
