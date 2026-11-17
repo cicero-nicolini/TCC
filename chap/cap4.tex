@@ -737,16 +737,201 @@ $\rho_{sw,\min}$ é a taxa geométrica mínima de armadura transversal, $A_{sw}$
 
 Corresponde ao modelo clássico de treliça, no qual as bielas de concreto comprimidas apresentam inclinação de \(45^\circ\) em relação ao eixo longitudinal da viga, representando o estado de cisalhamento puro. Os estribos podem apresentar inclinação em relação à horizontal entre \(45^\circ\) e \(90^\circ\), sendo dispostos de modo a acompanhar a direção das tensões principais de tração identificadas no estado de cisalhamento puro. A configuração com estribos verticais (\(\alpha = 90^\circ\)) é a de maior facilidade de montagem das armaduras.
 
+A força cortante resistente de cálculo, relativa à contribuição do concreto foi definida como $V_c = 0$, nos casos de flexo-tração com grande excentricidade, de acordo com a recomendação da NBR 6118 \citeonline{ABNT_NBR6118_2026} para elementos tracionados onde a linha neutra se encontra fora da seção, para os demais casos se considerou $V_c = V_{c0}$.
+
+em que:
+
+\begin{equation}
+V_{c0} = \frac{0,42f_{ct,m}b_wd}{\gamma_c}
+\end{equation}
+
+A contribuição da armadura transversal para a resistência ao esforço cortante é determinada por:
+
+\begin{equation}
+V_{sw} =
+\frac{A_{sw}}{s}\,0,9d f_{ywd}
+(\sin\alpha+\cos\alpha)
+\end{equation}
+
+A força cortante resistente de cálculo é obtida pela soma das contribuições do concreto e da armadura transversal:
+
+\begin{equation}
+V_{Rd3} = V_c + V_{sw}
+\end{equation}
+
+Para o dimensionamento da armadura transversal deve-se garantir:
+
+\begin{equation}
+V_{Sd} \leq V_{Rd3}
+\end{equation}
+
+Substituindo as expressões é possível isolar a taxa de armadura transversal:
+
+\begin{equation}
+\frac{A_{sw}}{s} \geq
+\frac{V_{Sd}-V_{c}}
+{0,9d f_{ywd}(\sin\alpha+\cos\alpha)}
+\end{equation}
+
+Além do dimensionamento da armadura transversal, deve-se verificar a resistência das diagonais comprimidas de concreto, de modo a evitar sua ruptura por esmagamento. No Modelo I, a força cortante resistente relativa à compressão diagonal é:
+
+\begin{equation}
+V_{Rd2} =
+0,27\alpha_{v2}f_{cd}b_wd
+\end{equation}
+
+em que:
+
+\begin{equation}
+\alpha_{v2} = 1-\frac{f_{ck}}{250}
+\end{equation}
+
+Deve ser atendida a seguinte condição de segurança:
+
+\begin{equation}
+V_{Sd} \leq V_{Rd2}
+\end{equation}
+
+A taxa geométrica mínima de armadura transversal é expressa por:
+
+\begin{equation}
+\left(\frac{A_{sw}}{s}\right)_{\min} =
+\frac{0,2f_{ct,m}b_w\sin\alpha}{f_{ywk}}
+\end{equation}
+
+Substituindo a taxa mínima de armadura transversal na expressão de dimensionamento, é possível obter a força cortante mínima de cálculo:
+
+\begin{equation}
+V_{Sd,\min} =
+\left(\frac{A_{sw}}{s}\right)_{\min}
+0,9d(\sin\alpha+\cos\alpha)f_{ywd}
++V_{c0}
+\end{equation}
+
+Por fim, a força cortante mínima característica é determinada por:
+
+\begin{equation}
+V_{k,\min} =
+\frac{
+\left(\frac{A_{sw}}{s}\right)_{\min}
+0,9d(\sin\alpha+\cos\alpha)f_{ywd}
++V_{c0}
+}{\gamma_f}
+\end{equation}
 
 
+\subsection{Modelo de Cálculo II}
 
+No Modelo de Cálculo II, também se utiliza a analogia de treliça, porém admite-se que as bielas comprimidas de concreto apresentem inclinação variável, entre \(30^\circ\) e \(45^\circ\) em relação ao eixo longitudinal do elemento.
 
+Nesse modelo, a força cortante resistente de cálculo, relativa à contribuição do concreto foi definida como $V_c = 0$, nos casos de flexo-tração com grande excentricidade, assim como no Modelo I, e para os demais casos considera-se a contribuição do concreto como $V_c = V_{c1}$.
 
+em que:
 
+\begin{equation}
+V_{c1} =
+\left(
+\frac{V_{Rd2}-V_{Sd}}
+{V_{Rd2}-V_{c0}}
+\right)V_{c0}
+\end{equation}
 
+A contribuição da armadura transversal é dada por:
 
+\begin{equation}
+V_{sw} =
+\frac{A_{sw}}{s}
+\,0,9d f_{ywd}
+(\cot\alpha+\cot\theta)\sin\alpha
+\end{equation}
 
+Dessa forma, a força cortante resistente é:
 
+\begin{equation}
+V_{Rd3} = V_{c} + V_{sw}
+\end{equation}
 
+e a condição de dimensionamento é:
 
+\begin{equation}
+V_{Sd} \leq V_{Rd3}
+\end{equation}
 
+Isolando a taxa de armadura transversal é possível obter:
+
+\begin{equation}
+\frac{A_{sw}}{s} \geq
+\frac{V_{Sd}-V_{c}}
+{0,9d f_{ywd}(\cot\alpha+\cot\theta)\sin\alpha}
+\end{equation}
+
+No Modelo II, a força cortante resistente relativa à compressão diagonal é expressa por:
+
+\begin{equation}
+V_{Rd2} =
+0,54\alpha_{v2}f_{cd}b_wd
+\sin^2\theta
+(\cot\theta+\cot\alpha)
+\end{equation}
+
+Assim como no Modelo I, deve ser atendida a condição:
+
+\begin{equation}
+V_{Sd} \leq V_{Rd2}
+\end{equation}
+
+Para a determinação da força cortante mínima, a contribuição inicial do concreto é calculada por:
+
+\begin{equation}
+V_{c0} =
+\frac{0,42f_{ct,m}b_wd}{\gamma_c}
+\end{equation}
+
+A taxa geométrica mínima de armadura transversal é dada por:
+
+\begin{equation}
+\left(\frac{A_{sw}}{s}\right)_{\min} =
+\frac{0,2f_{ct,m}b_w\sin\alpha}{f_{ywk}}
+\end{equation}
+
+Substituindo a taxa mínima de armadura transversal na expressão de dimensionamento e considerando a variação da contribuição do concreto, obtém-se:
+
+\begin{equation}
+\left(\frac{A_{sw}}{s}\right)_{\min} =
+\frac{
+V_{Sd,\min}-
+\left(
+\frac{V_{Rd2}-V_{Sd,\min}}
+{V_{Rd2}-V_{c0}}
+\right)V_{c0}
+}{
+0,9d(\cot\theta+\cot\alpha)
+\sin\alpha f_{ywd}
+}
+\end{equation}
+
+Isolando a força cortante solicitante mínima nessa expressão, obtém-se:
+
+\begin{equation}
+V_{Sd,\min} =
+\left(\frac{A_{sw}}{s}\right)_{\min}
+0,9d(\cot\theta+\cot\alpha)
+\sin\alpha f_{ywd}
+\left(1-\frac{V_{c0}}{V_{Rd2}}\right)
++V_{c0}
+\end{equation}
+
+Finalmente, a força cortante mínima característica é determinada por:
+
+\begin{equation}
+V_{k,\min} =
+\frac{
+\left(\frac{A_{sw}}{s}\right)_{\min}
+0,9d(\cot\theta+\cot\alpha)
+\sin\alpha f_{ywd}
+\left(1-\frac{V_{c0}}{V_{Rd2}}\right)
++V_{c0}
+}{\gamma_f}
+\end{equation}
+
+em que $V_{Sd}$ é a força cortante solicitante de cálculo, $V_{Sd,\min}$ é a força cortante solicitante mínima de cálculo, $V_{k,\min}$ é a força cortante mínima característica, $V_{Rd2}$ é a força cortante resistente de cálculo relativa à compressão diagonal do concreto, $V_{Rd3}$ é a força cortante resistente de cálculo relativa à tração diagonal, $V_c$ é a parcela da força cortante resistida pelos mecanismos complementares ao da treliça, $V_{sw}$ é a parcela resistida pela armadura transversal, $V_{c0}$ e $V_{c1}$ são parcelas de contribuição do concreto, $A_{sw}$ é a área da seção transversal da armadura transversal, $s$ é o espaçamento entre estribos, $b_w$ é a menor largura da seção ao longo da altura útil, $d$ é a altura útil da seção, $f_{cd}$ é a resistência de cálculo à compressão do concreto, $f_{ctd}$ é a resistência de cálculo à tração do concreto, $f_{ct,m}$ é a resistência média à tração do concreto, $f_{ywd}$ é a resistência de cálculo ao escoamento do aço da armadura transversal, $f_{ywk}$ é a resistência característica ao escoamento do aço da armadura transversal, $f_{ck}$ é a resistência característica à compressão do concreto, $\alpha_{v2}$ é o coeficiente relacionado à resistência do concreto, $\theta$ é o ângulo de inclinação das diagonais comprimidas, $\alpha$ é o ângulo de inclinação da armadura transversal em relação ao eixo longitudinal do elemento, $\gamma_c$ é o coeficiente parcial de segurança do concreto e $\gamma_f$ é o coeficiente parcial de segurança das ações.
