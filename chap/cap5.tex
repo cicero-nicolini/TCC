@@ -11,9 +11,7 @@
 \chapter{Descrição do software}
 % ----------------------------------------------------------
 
-O \textit{software} consiste numa ferramenta para auxiliar engenheiros no projeto de vigas de concreto armado com aberturas na direção de sua largura, permitindo o dimensionamento e detalhamento de forma automatizada.
-
-A partir dos dados de entrada fornecidos pelo usuário, o programa constrói o modelo estrutural, que é resolvido pelo método da rigidez. Com os resultados obtidos, é feito o dimensionamento das armaduras. Os resultados são gerados e apresentados em gráficos pela biblioteca \texttt{Matplotlib} do Python.
+O \textit{software} consiste numa ferramenta para auxiliar engenheiros no projeto de vigas de concreto armado com aberturas na direção de sua largura, permitindo seu dimensionamento e detalhamento de forma automatizada. O capítulo a seguir apresenta como o programa pode ser utilizado, descrevendo suas principais partes, como estão organizadas e qual a função de cada uma.
 
 \section{Linguagem e estrutura do Software}
 
@@ -21,11 +19,105 @@ A ferramenta computacional foi desenvolvida na linguagem de programação Python
 
 O \textit{software} segue o paradigma de programação orientada a objetos, que permite agrupar dados e funcionalidades relacionados. Essa abordagem possibilita a divisão do código em partes com funções específicas, que podem ser desenvolvidas ou modificadas de maneira independente. Dessa forma, facilita a manutenção, a identificação e a correção de erros, bem como a implementação de novas funcionalidades sem a necessidade de alterações significativas nas demais partes do programa.
 
-O código é organizado em classes e módulos, que reúnem os dados e as funções necessários às diferentes etapas do programa. As classes armazenam os parâmetros e métodos relacionados à construção do modelo estrutural, à análise pelo método da rigidez e ao dimensionamento das armaduras. Também foram desenvolvidos módulos específicos para a geração e apresentação dos gráficos dos resultados obtidos. Entre os principais objetos do programa, destacam-se as classes \texttt{No}, \texttt{Barra}, \texttt{Estrutura} e \texttt{CarregamentoDistribuido}, cada uma responsável por funções específicas no processo de análise e dimensionamento.
+O código é organizado em classes e módulos, que reúnem os dados e as funções necessários às diferentes etapas do programa, conforme ilustrado na árvore do projeto apresentada na Figura \ref{Fig.5.1}. As classes armazenam os parâmetros e métodos relacionados à definição das propriedades dos materiais, à construção do modelo estrutural, à análise pelo método da rigidez e ao dimensionamento das armaduras. Também foram desenvolvidos módulos específicos para a geração e apresentação dos gráficos dos resultados obtidos. A seguir, serão apresentadas as principais classes do programa, destacando suas respectivas funções e a importância de cada uma para a organização do código e a execução das etapas de análise estrutural e dimensionamento das armaduras.
 
-***Figura algum dos Objetos***
+\begin{figure}[H]
+\centering
+\refstepcounter{figure}
+\label{Fig.5.1}
 
-Explicar o que faz a classe Nó, Barra, Estrutura e Carregamento Distribuido
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Figura \thefigure: Estrutura do \textit{software}
+\end{minipage}
+
+\includegraphics[scale=1.5]{estrutura_software.png}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Fonte: Elaborado pelo autor
+\end{minipage}
+\end{figure}
+
+A classe \texttt{No} agrupa dados referentes aos índices dos nós do modelo estrutural, coordenadas x e y necessárias para representar a estrutura, assim como definições de restrições de deslocamentos conforme pode-se ver na Figura \ref{Fig.5.2}.
+
+\begin{figure}[H]
+\centering
+\refstepcounter{figure}
+\label{Fig.5.2}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Figura \thefigure: Objeto que guarda os dados dos nós da estrutura
+\end{minipage}
+
+\includegraphics[scale=1.5]{classe_no.png}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Fonte: Elaborado pelo autor
+\end{minipage}
+\end{figure}
+
+A classe \texttt{Barra} recebe instâncias dos objetos que definem os nós, as propriedades dos materiais, a geometria e rigidez da seção transversal da barra, bem como argumentos necessários ao dimensionamento das armaduras (\ref{Fig.5.3}).
+
+\begin{figure}[H]
+\centering
+\refstepcounter{figure}
+\label{Fig.5.3}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Figura \thefigure: Objeto Barra do \textit{software}
+\end{minipage}
+
+\includegraphics[scale=1.25]{barra.png}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Fonte: Elaborado pelo autor
+\end{minipage}
+\end{figure}
+
+A classe \texttt{CarregamentoDistribuido} recebe uma instância do objeto \texttt{Barra}, ou seja, a barra onde será definido o carregamento, argumentos que definem a posição do carregamento e se será aplicado sobre todo o comprimento da barra (\ref{Fig.5.4}).
+
+\begin{figure}[H]
+\centering
+\refstepcounter{figure}
+\label{Fig.5.4}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Figura \thefigure: Objeto CarregamentoDistribuido do \textit{software}
+\end{minipage}
+
+\includegraphics[scale=1.5]{carregamento_distribuido.png}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Fonte: Elaborado pelo autor
+\end{minipage}
+\end{figure}
+
+A classe \texttt{Estrutura} recebe listas de nós e barras necessárias para a construção do modelo estrutural que representa a viga com abertura. A partir dessas informações, a matriz da estrutura é resolvida (\ref{Fig.5.5})...
+
+\begin{figure}[H]
+\centering
+\refstepcounter{figure}
+\label{Fig.5.5}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Figura \thefigure: Objeto Estrutura do \textit{software}
+\end{minipage}
+
+\includegraphics[scale=1.5]{classe_estrutura.png}
+
+\begin{minipage}{10cm}
+    \fontsize{10pt}{12pt}\selectfont
+    Fonte: Elaborado pelo autor
+\end{minipage}
+\end{figure}
 
 \section{Utilização do \textit{Software}}
 
