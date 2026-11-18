@@ -1,0 +1,45 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	cap5.tex 
+%  -----------
+%
+%	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
+%	\chapter{Nome do Capitulo}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\chapter{Descrição do software}
+% ----------------------------------------------------------
+
+O \textit{software} consiste numa ferramenta para auxiliar engenheiros no projeto de vigas de concreto armado com aberturas na direção de sua largura, permitindo o dimensionamento e detalhamento de forma automatizada.
+
+A partir dos dados de entrada fornecidos pelo usuário, o programa constrói o modelo estrutural, que é resolvido pelo método da rigidez. Com os resultados obtidos, é feito o dimensionamento das armaduras. Os resultados são gerados e apresentados em gráficos pela biblioteca \texttt{Matplotlib} do Python.
+
+\section{Linguagem e estrutura do Software}
+
+A ferramenta computacional foi desenvolvida na linguagem de programação Python, escolhida por sua simplicidade e versatilidade. Além disso, possui uma ampla variedade de bibliotecas de fácil acesso, que facilitam a realização de operações matemáticas, cálculos matriciais e o desenvolvimento de interfaces gráficas.
+
+O \textit{software} segue o paradigma de programação orientada a objetos, que permite agrupar dados e funcionalidades relacionados. Essa abordagem possibilita a divisão do código em partes com funções específicas, que podem ser desenvolvidas ou modificadas de maneira independente. Dessa forma, facilita a manutenção, a identificação e a correção de erros, bem como a implementação de novas funcionalidades sem a necessidade de alterações significativas nas demais partes do programa.
+
+O código é organizado em classes e módulos, que reúnem os dados e as funções necessários às diferentes etapas do programa. As classes armazenam os parâmetros e métodos relacionados à construção do modelo estrutural, à análise pelo método da rigidez e ao dimensionamento das armaduras. Também foram desenvolvidos módulos específicos para a geração e apresentação dos gráficos dos resultados obtidos. Entre os principais objetos do programa, destacam-se as classes \texttt{No}, \texttt{Barra}, \texttt{Estrutura} e \texttt{CarregamentoDistribuido}, cada uma responsável por funções específicas no processo de análise e dimensionamento.
+
+***Figura algum dos Objetos***
+
+Explicar o que faz a classe Nó, Barra, Estrutura e Carregamento Distribuido
+
+\section{Utilização do \textit{Software}}
+
+Para utilizar o \textit{software}, o usuário deve fornecer os dados de entrada necessários para o dimensionamento da viga com aberturas. Esses dados incluem informações sobre as dimensões da viga, propriedades do concreto e do aço, módulo da carga aplicada, posição e dimensões da abertura, entre outros.
+
+Os dados de entrada são introduzidos dentro de um módulo chamado modelo, que é responsável por armazenar e organizar as informações fornecidas pelo usuário. Esse módulo constrói o modelo de nós e barras que representa a viga com aberturas, chamando os módulos e funções programadas para esse propósito. Em seguida, os dados são construidos para calcular as reações, deslocamentos e esforços, a partir da solução do método da rigidez.
+
+***Figura modelo e dados de entrada*** 
+
+O dimensionamento é realizado no objeto \texttt{Barra}, responsável pela representação dos elementos de barra que compõem o modelo estrutural. A classe possui, em sua função \texttt{\_\_init\_\_}, parâmetros destinados ao armazenamento dos resultados das áreas de armaduras longitudinais de tração e de compressão, bem como da área de armadura transversal (estribos).
+
+Cada um desses parâmetros é definido como um vetor de dimensão dois, utilizando a biblioteca \texttt{NumPy} do Python. Cada posição do vetor armazena o resultado correspondente a uma das extremidades da barra, ou seja, aos nós inicial e final do elemento.
+
+As rotinas de cálculo são implementadas por meio de métodos próprios da classe, responsáveis por realizar os cálculos de dimensionamento de cada tipo de armadura. Ao final de cada rotina, os resultados obtidos são armazenados nos respectivos vetores da classe.
+
+***Figura função Init da barra com os vetores***
+
