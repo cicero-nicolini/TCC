@@ -136,7 +136,7 @@ O autor impõe limites para a utilização do modelo, que caso ultrapassados a e
 \item banzo inferior com no mínimo 10 cm para envolver e ancorar a armadura principal.
 \end{enumerate}
 
-\subsection{Modelo proposto por \citeonline{mansur1992deflections}}
+\subsection{Modelo Proposto por \citeonline{mansur1992deflections}}
 
 O modelo de \citeonline{mansur1992deflections} \textit{apud} \citeonline{MansurTan1999} representa a viga por um modelo estrutural de segmentos uniformes conforme ilustrado na figura \ref{Fig.3.5}, atribuindo ao trecho com abertura rigidezes equivalentes à flexão e ao cisalhamento, de modo a reproduzir seu comportamento estrutural.
 
@@ -235,6 +235,53 @@ Conhecidas as condições de contorno das regiões $B_{1}$, $B_{2}$ e $B_{3}$, o
         Fonte: \citeonline{MansurTan1999}
     \end{minipage}
 \end{figure}
+
+\subsection{Modelo Proposto por \citeonline{Zhang2025}}
+
+Os autores desenvolveram uma extensa análise numérica não linear por elementos finitos (via software ABAQUS) utilizando o modelo de plasticidade com dano para o concreto. O trabalho avaliou 60 modelos de vigas submetidos a cargas concentradas. A pesquisa avaliou a influência de seis parâmetros fundamentais:
+
+\begin{enumerate}[label=\alph*)]
+
+\item relação da distância entre o apoio da viga e o ponto de aplicação da carga concentrada ($a$) e altura total da viga ($a/H$): Valores de 2, 3 e 4;
+
+\item posição da abertura ($L$): cinco posições distintas ao longo do vão (de $0,2a$ a $0,8a$ da distância do apoio);
+
+\item largura da abertura ($b_k$): variação entre 200 mm e 600 mm;
+
+\item altura da abertura ($h_k$): variação entre 100 mm e 300 mm;
+
+\item classe de resistência do concreto ($C$): do C20 ao C60;
+
+\item espaçamento dos estribos ($S$): nos banzos e ao redor da abertura, variando de 25 mm a 150 mm.
+
+\end{enumerate}
+
+Entre as principais descobertas do estudo, o artigo demonstra que a distribuição da força cortante entre os banzos da abertura é significativamente desigual: o banzo superior pode absorver até 77,2\% da força cortante total. Como o banzo inferior apresenta fissuração precoce durante o carregamento, sua rigidez diminui rapidamente, favorecendo a transferência de uma parcela maior da força cortante para o banzo superior. Essa distribuição desigual pode fazer com que a viga atinja a ruína por falha de cisalhamento no banzo superior antes que o banzo inferior alcance sua capacidade resistente máxima.
+
+Efeito da posição da abertura: aberturas posicionadas próximas ao ponto de aplicação da carga concentrada ($L = 0,8a$) causam a redução mais drástica na capacidade resistente ao esforço cortante (queda de até 40,07\% em relação a uma viga sem abertura). Aberturas muito próximas aos apoios ($L = 0,2a$) também causam quedas expressivas na resistência (redução de até 32,81\%).
+
+Efeito das dimensões da abertura: o aumento da largura e da altura da abertura reduz progressivamente a resistência da viga. Quando a altura da abertura atinge $0,6H$ (300 mm), a capacidade resistente ao esforço cortante é reduzida em até 56,12\%, podendo ocorrer falhas frágeis por tração diagonal nos banzos.
+
+Efeito dos estribos e do concreto: reduzir o espaçamento dos estribos nos banzos e nas bordas da abertura aumenta significativamente a capacidade resistente (para os estribos dos banzos, o ganho foi de até 22,59\%), contribuindo para melhorar o comportamento resistente da viga. O aumento da resistência do concreto apresenta maior influência nas vigas com menor relação $a/H$ ($a/H = 2$), mas tem menor impacto naquelas com maior relação $a/H$ ($a/H = 4$).
+
+Os autores propuseram uma equação de regressão linear múltipla para calcular a parcela de esforço cortante absorvida pelo banzo superior conforme a expressão \ref{eq:alpha_T}.
+
+\begin{equation}
+\label{eq:alpha_T}
+\alpha_T = 0,5179 + 0,00185\left(\frac{a}{H}\right)
++ 0,31378\left(\frac{L}{a}\right)
+- 0,09977\left(\frac{b_k}{a}\right)
+- 0,11653\left(\frac{h_k}{H}\right)
+\end{equation}
+
+Os autores propuseram um novo modelo de capacidade de cisalhamento, uma fórmula corrigida apresentada em \ref{eq:Vu2}. Ficou demonstrado que os modelos tradicionais da literatura (como o de \citeonline{mansur1992deflections}) superestimavam a capacidade de carga das vigas, enquanto o novo modelo dos autores apresentou excelente precisão.
+
+\begin{equation}
+\label{eq:Vu2}
+V_{u2} = \frac{V_{uT}}{\alpha_T}
+\end{equation}
+
+em que $V_{u2}$ é a capacidade resistente total da viga ao esforço cortante, $V_{uT}$ é a capacidade resistente ao esforço cortante do banzo superior e $\alpha_T$ é o coeficiente de distribuição da força cortante no banzo superior.
 
 \subsection{TQS}
 
