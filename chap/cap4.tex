@@ -54,7 +54,7 @@ em que $\mathbf{K}$ é a matriz de rigidez da estrutura, $\mathbf{U}$ é o vetor
 
 A Figura \ref{Fig.4.2} a seguir apresenta um exemplo de uma estrutura formada por elementos de viga.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.2}
@@ -74,7 +74,7 @@ A Figura \ref{Fig.4.2} a seguir apresenta um exemplo de uma estrutura formada po
 
 A Figura \ref{Fig.4.3} demonstra a montagem da matriz de rigidez da estrutura a partir da adição direta das matrizes de rigidez dos elementos.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.3}
@@ -98,7 +98,7 @@ O significado físico da matriz de rigidez pode ser compreendido a partir da apl
 
 Na formulação do método da rigidez para um elemento de pórtico plano, são considerados três graus de liberdade por nó: duas translações (horizontal e vertical) e uma rotação. Como o elemento possui dois nós, sua formulação totaliza seis graus de liberdade. Portanto, os vetores de forças e de deslocamentos nodais são de ordem 6, e a matriz de rigidez do elemento, $6 \times 6$. A Figura \ref{Fig.4.4} apresenta a matriz de rigidez de uma barra de pórtico plano no seu sistema local de coordenadas.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.4}
@@ -133,7 +133,7 @@ em que $\mathbf{k_{L}}$ é a matriz de rigidez da barra no sistema de coordenada
 
 Segundo \citeonline{Weaver2018} para transformar a matriz de rigidez do elemento dos eixos locais para os eixos da estrutura, é necessária a matriz de rotação $\mathbf{R}$ conforme ilustrado na Figura \ref{Fig.4.5}. A matriz de rotação transposta $\mathbf{R}^T$ transforma os vetores de forças e deslocamentos nodais dos elementos do sistema local de coordenadas para o global, e de forma inversa a matriz $\mathbf{R}$ transforma os vetores do sistema global para o local conforme as equações \ref{eq:transformação_G_L} e \ref{eq:transformação_L_G}. A equação \ref{eq:kG} demonstra a transformação da matriz de rigidez para o sistema de coordenadas global.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.5}
@@ -205,7 +205,7 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
         Figura \thefigure: Diagrama tensão-deformação idealizado do concreto
     \end{minipage}
 
-    \includegraphics[scale=1]{compressao.png}
+    \includegraphics[scale=0.3]{compressao.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -215,7 +215,7 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
 
     \item a tensão nas armaduras é obtida a partir dos diagramas tensão-deformação conforme a Figura \ref{Fig.4.7};
     
-    \begin{figure}[htb]
+    \begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.7}
@@ -225,7 +225,7 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
         Figura \thefigure: Diagrama tensão-deformação para aços de armaduras passivas
     \end{minipage}
 
-    \includegraphics[scale=1]{diagrama_aço.png}
+    \includegraphics[scale=0.3]{diagrama_aco.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -237,7 +237,7 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
     \item no estado limite último, a distribuição das deformações na seção transversal ocorre conforme a Figura \ref{Fig.4.8}.
 \end{enumerate}
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.8}
@@ -247,7 +247,7 @@ As armaduras longitudinais são dimensionadas por flexão simples nas regiões d
         Figura \thefigure: Domínios de deformação no ELU
     \end{minipage}
 
-    \includegraphics[scale=1.3]{dominios.png}
+    \includegraphics[scale=0.4]{dominios.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -289,13 +289,7 @@ M_{d,\min} = 0,8W_0f_{ctk,\mathrm{sup}}
 \label{eq:armadura_minima}
 \end{equation}
 
-onde:
-
-\begin{enumerate}[label=\alph*)]
-    \item $M_{d,\min}$ é o momento fletor mínimo de cálculo;
-    \item $W_0$ é o módulo de resistência da seção transversal bruta de concreto, relativo à fibra mais tracionada;
-    \item $f_{ctk,\mathrm{sup}}$ é a resistência característica superior do concreto à tração.
-\end{enumerate}
+onde $M_{d,\min}$ é o momento fletor mínimo de cálculo, $W_0$ é o módulo de resistência da seção transversal bruta de concreto, relativo à fibra mais tracionada, e $f_{ctk,\mathrm{sup}}$ é a resistência característica superior do concreto à tração.
 
 \subsection{Flexão Simples}
 
@@ -338,9 +332,7 @@ determinar a área da armadura longitudinal necessária ($A_{s}$) para que o mom
     \frac{x}{d} = \frac{\varepsilon_{cu}}{\varepsilon_{cu} + \varepsilon_s}
 \end{equation}
 
-em que:
-
-$F_s$ é a força resultante na armadura de tração, $F_c$ é a força resultante na zona comprimida de concreto, $M_d$ é o momento fletor de cálculo solicitante, $z$ é o braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto), \(\eta_c\) é o coeficiente redutor da resistência do concreto, \(\alpha_c\) é o coeficiente de ajuste da tensão de compressão do concreto, $f_{cd}$ é a resistência de cálculo do concreto à compressão, $b_w$ é a largura da seção transversal da viga, $\lambda$ é o coeficiente que define a altura do bloco retangular comprimido de concreto, $x$ é a profundidade da linha neutra, $d$ é a altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração), $A_s$ é a área da seção transversal da armadura longitudinal de tração, $f_{yd}$ é a resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$), $\varepsilon_{cu}$ é a deformação específica última do concreto na compressão e $\varepsilon_s$ é a deformação específica na armadura de tração.
+em que $F_s$ é a força resultante na armadura de tração, $F_c$ é a força resultante na zona comprimida de concreto, $M_d$ é o momento fletor de cálculo solicitante, $z$ é o braço de alavanca (distância entre a força de tração no aço e a força de compressão no concreto), \(\eta_c\) é o coeficiente redutor da resistência do concreto, \(\alpha_c\) é o coeficiente de ajuste da tensão de compressão do concreto, $f_{cd}$ é a resistência de cálculo do concreto à compressão, $b_w$ é a largura da seção transversal da viga, $\lambda$ é o coeficiente que define a altura do bloco retangular comprimido de concreto, $x$ é a profundidade da linha neutra, $d$ é a altura útil da seção transversal (distância da fibra mais comprimida até o centro de gravidade da armadura longitudinal de tração), $A_s$ é a área da seção transversal da armadura longitudinal de tração, $f_{yd}$ é a resistência de cálculo ao escoamento do aço ($f_{yd} = f_{yk} / \gamma_s$), $\varepsilon_{cu}$ é a deformação específica última do concreto na compressão e $\varepsilon_s$ é a deformação específica na armadura de tração.
 
 Os parâmetros $\alpha_c$, $\lambda$ e $\eta_c$ variam de acorco com a resistência característica do concreto ($f_{ck}$). Da mesma forma, a deformação específica-limite $\varepsilon_{cu}$ apresenta valores distintos para os concretos do Grupo I e do Grupo II. Seus valores são determinados conforme as equações estabelecidas pela NBR 6118 \citeonline{ABNT_NBR6118_2026}.
 
@@ -363,12 +355,7 @@ A_{s2} = \frac{M_d - M_{d,\mathrm{lim}}}{\sigma_2\cdot(d-d')}
 \label{eq:deformacao_armadura_comprimida}
 \end{equation}
 
-\begin{enumerate}[label=\alph*)]
-    \item $\varepsilon_2$ é a deformação específica na armadura comprimida;
-    \item $\varepsilon_{cu}$ é o encurtamento último do concreto;
-    \item $d'$ é a distância da fibra mais comprimida ao centro de gravidade da armadura comprimida;
-    \item $x$ é a altura da linha neutra.
-\end{enumerate}
+em que $\varepsilon_2$ é a deformação específica na armadura comprimida, $\varepsilon_{cu}$ é o encurtamento último do concreto, $d'$ é a distância da fibra mais comprimida ao centro de gravidade da armadura comprimida e $x$ é a altura da linha neutra.
 
 A tensão $\sigma_2$ pode assumir diferentes valores conforme a deformação $\varepsilon_2$. Isso ocorre porque quando o aço atinge a deformação de escoamento ($\varepsilon_{yd}$), sua tensão permanece limitada à resistência de cálculo ao escoamento ($f_{yd}$).
 
@@ -423,7 +410,7 @@ M_{d,\mathrm{lim}} =
 
 A Figura \ref{Fig.4.9} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura simples.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.9}
@@ -433,7 +420,7 @@ A Figura \ref{Fig.4.9} apresenta a relação entre esforços atuantes e resisten
         Figura \thefigure: Caso de armadura simples na flexo-compressão com grande excentricidade 
     \end{minipage}
 
-    \includegraphics[scale=2]{armadura_simples.png}
+    \includegraphics[scale=0.5]{armadura_simples.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -462,7 +449,7 @@ A tensão na armadura comprimida (\(\sigma_2\)) é determinada a partir de sua d
 
 A Figura \ref{Fig.4.10} apresenta a relação entre esforços atuantes e resistentes para a situação de armadura dupla.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.4.10}
@@ -472,7 +459,7 @@ A Figura \ref{Fig.4.10} apresenta a relação entre esforços atuantes e resiste
         Figura \thefigure: Caso de armadura dupla na flexo-compressão com grande excentricidade 
     \end{minipage}
 
-    \includegraphics[scale=2]{armadura_dupla.png}
+    \includegraphics[scale=0.5]{armadura_dupla.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -518,6 +505,18 @@ As excentricidades de $N_{d}$ são dadas pelas equações a seguir:
 \begin{equation}
 e_0 = \frac{M_d}{N_d}
 \end{equation}
+
+Quando $N_{d}$ está fora das armaduras:
+
+\begin{equation}
+e_1 = e_0 + \frac{d - d'}{2}
+\end{equation}
+
+\begin{equation}
+e_2 = e_0 - \frac{d - d'}{2} - e_0
+\end{equation}
+
+Quando $N_{d}$ está dentro das armaduras:
 
 \begin{equation}
 e_1 = \frac{d - d'}{2} + e_0
@@ -616,7 +615,7 @@ A Figura \ref{Fig.4.11} apresenta a relação entre esforços atuantes e resiste
         Figura \thefigure: Caso de armadura simples na flexo-tração com grande excentricidade 
     \end{minipage}
 
-    \includegraphics[scale=2]{ft_armadura_simples.png}
+    \includegraphics[scale=0.5]{ft_armadura_simples.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -659,7 +658,7 @@ A Figura \ref{Fig.4.12} apresenta a relação entre esforços atuantes e resiste
         Figura \thefigure: Caso de armadura dupla na flexo-tração com grande excentricidade 
     \end{minipage}
 
-    \includegraphics[scale=2]{ft_armadura_dupla.png}
+    \includegraphics[scale=0.5]{ft_armadura_dupla.jpeg}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
