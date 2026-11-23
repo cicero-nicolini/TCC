@@ -12,9 +12,9 @@
 % ----------------------------------------------------------
 
 
-A execução de aberturas em elementos estruturais é uma prática comum na construção civil, especialmente, as aberturas em vigas que são uma necessidade da compatibilidade do projeto estrutural com outros projetos complementares. Principalmente projetos que envolvem instalações prediais, tais como, de climatização, elétricas, hidrossanitárias e de proteção contra incêndio (ver Figura \ref{Fig.1.1}).
+A execução de aberturas em elementos estruturais é uma prática comum na construção civil, especialmente, em vigas devido a necessidade da compatibilidade do projeto estrutural com outros projetos complementares. Principalmente projetos que envolvem instalações prediais, tais como, de climatização,instalações elétricas, hidrossanitárias e de proteção contra incêndio (ver Figura \ref{Fig.1.1}).
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.1.1}
@@ -24,7 +24,7 @@ A execução de aberturas em elementos estruturais é uma prática comum na cons
         Figura \thefigure: Exemplo de aberturas em vigas
     \end{minipage}
 
-    \includegraphics[scale=2.75]{abertura.png}
+    \includegraphics[scale=2.25]{abertura.png}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -32,9 +32,9 @@ A execução de aberturas em elementos estruturais é uma prática comum na cons
     \end{minipage}
 \end{figure}
 
-As aberturas nas vigas também evitam que esses dutos de serviços tenham que passar por baixo da viga afetando a altura da edificação para manter o pé-direito a partir do forro falso, conforme pode se ver na Figura \ref{Fig.1.2}.
+As aberturas nas vigas também evitam que as instalações de serviços tenham que passar por baixo da viga ocasionando o aumento da altura da edificação para manter o pé-direito a partir do forro falso, conforme pode se ver na Figura \ref{Fig.1.2}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
     \refstepcounter{figure}
     \label{Fig.1.2}
@@ -44,7 +44,7 @@ As aberturas nas vigas também evitam que esses dutos de serviços tenham que pa
         Figura \thefigure: Disposição de dutos de serviço integrados à estrutura e forro falso
     \end{minipage}
 
-    \includegraphics[scale=1.75]{duto.png}
+    \includegraphics[scale=1.25]{duto.png}
 
     \begin{minipage}{10cm}
         \fontsize{10pt}{12pt}\selectfont
@@ -52,11 +52,11 @@ As aberturas nas vigas também evitam que esses dutos de serviços tenham que pa
     \end{minipage}
 \end{figure}
 
-Para evitar furações em fase de execução e eventuais reforços é muito importante considerar as aberturas ainda em fase de projeto. Contudo, ferramentas desse tipo na modelagem estrutural ainda é incipiente nos softwares de cálculo disponíveis para edificações. A modelagem muitas vezes é considerada através de métodos empíricos que não consideram a redistribuição das solicitações internas no restante da viga devido a presença da abertura. Existem  modelos mais sofisticados como método das bielas e tirantes ou método dos elementos finitos, porém são métodos que levam tempo na sua construção e análise e geralmente são reservados pelos projetistas para situações mais complexas.
+Para evitar furações em fase de execução e eventuais reforços é muito importante considerar as aberturas ainda em fase de projeto. Contudo, ferramentas desse tipo na modelagem estrutural ainda é incipiente nos \textit{softwares} de cálculo disponíveis para edificações. A abordagem muitas vezes considera métodos empíricos que não modelam a redistribuição das solicitações internas no restante da viga devido a presença da abertura. Apesar disso, existem  modelos mais sofisticados como método das bielas e tirantes ou método dos elementos finitos. Contudo, são métodos que levam tempo na sua construção e análise e, geralmente, são reservados pelos projetistas para situações mais complexas.
 
-Aliado a essas limitações os projetos exigem cada vez menos tempo para etapa de compatibilizações o que traz a necessidade de uma ferramenta rápida para avaliar e dimensionar as armaduras da viga com aberturas. Em vista disso, esse trabalho consiste em desenvolver e propor um software para o dimensionamento de vigas em concreto armado com aberturas na direção da largura.
+Aliado a essas limitações os projetos exigem cada vez menos tempo para etapa de compatibilizações o que traz a necessidade de uma ferramenta rápida para avaliar e dimensionar as armaduras da viga com aberturas. Em vista disso, esse trabalho consiste em desenvolver e propor um \textit{software} para o dimensionamento de vigas em concreto armado com aberturas na direção da largura.
 
-Esse software é programado em Python e é composto por três partes: o modelo estrutural, o dimensionamento das áreas de aço e o detalhamento da armadura. O modelo estrutural adotado é um pórtico reticulado resolvido através do método da rigidez. Esse método é escolhido pela facilidade de ser convertido em um algoritmo computacional. A região da abertura é modelada de modo a permitir a distribuição das solicitações entre os banzos da abertura. Para o dimensionamento da área de aço longitudinal é adotado as prescrições normativas para o ELU com formulações de dimensionamento de seção retangular de concreto armado submetida à flexão simples (trecho da viga sem o furo), à flexo-tração (banzo tracionado) e flexo-compressão (banzo comprimido). Para a área de aço transversal, é adotada a metodologia normativa que se baseia na analogia da treliça. O detalhamento se baseia nas áreas de aço calculadas e nas prescrições normativas quanto ao escalonamento das armaduras e ancoragens.
+Esse \textit{software} é programado em Python e é composto por três partes: o modelo estrutural, o dimensionamento das áreas de aço e o detalhamento da armadura. O modelo estrutural adotado é um pórtico reticulado resolvido através do método da rigidez. Esse método é escolhido pela facilidade de ser convertido em um algoritmo computacional. A região da abertura é modelada de modo a permitir a distribuição das solicitações entre os banzos da abertura. Para o dimensionamento da área de aço longitudinal é adotado as prescrições normativas para o ELU com formulações de dimensionamento de seção retangular de concreto armado submetida à flexão simples (trecho da viga sem o furo), à flexo-tração (banzo tracionado) e flexo-compressão (banzo comprimido). Para a área de aço transversal, é adotada a metodologia normativa que se baseia na analogia da treliça. O detalhamento se baseia nas áreas de aço calculadas e nas prescrições normativas quanto ao escalonamento das armaduras e ancoragens.
 
 ***Esse trabalho está composto pelos seguintes capítulos:***
 

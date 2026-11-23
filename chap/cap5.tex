@@ -8,130 +8,60 @@
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+
+
 \chapter{Descrição do software}
 % ----------------------------------------------------------
 
-O \textit{software} consiste numa ferramenta para auxiliar engenheiros no projeto de vigas de concreto armado com aberturas na direção de sua largura, permitindo seu dimensionamento e detalhamento de forma automatizada. O capítulo a seguir apresenta como o programa pode ser utilizado, descrevendo suas principais partes, como estão organizadas e qual a função de cada uma.
+O \textit{software} consiste numa ferramenta para auxiliar engenheiros no projeto de vigas de concreto armado com aberturas na direção de sua largura, permitindo seu dimensionamento e detalhamento de forma automatizada. Este capítulo apresenta como o programa pode ser utilizado, descrevendo suas principais partes, como estão organizadas e qual a função de cada uma.
 
 \section{Linguagem e estrutura do Software}
 
 A ferramenta computacional foi desenvolvida na linguagem de programação Python, escolhida por sua simplicidade e versatilidade. Além disso, possui uma ampla variedade de bibliotecas de fácil acesso, que facilitam a realização de operações matemáticas, cálculos matriciais e o desenvolvimento de interfaces gráficas.
 
-O \textit{software} segue o paradigma de programação orientada a objetos, que permite agrupar dados e funcionalidades relacionados. Essa abordagem possibilita a divisão do código em partes com funções específicas, que podem ser desenvolvidas ou modificadas de maneira independente. Dessa forma, facilita a manutenção, a identificação e a correção de erros, bem como a implementação de novas funcionalidades sem a necessidade de alterações significativas nas demais partes do programa.
+O \textit{software} foi desenvolvido utilizando o paradigma de programação orientada a objetos, que permite organizar o código em classes, reunindo dados e funções relacionados a cada etapa do programa. Essa divisão permite que cada parte tenha uma responsabilidade específica, tornando o código mais organizado e facilitando sua manutenção, correção e ampliação.
 
-O código é organizado em classes e módulos, que reúnem os dados e as funções necessários às diferentes etapas do programa, conforme ilustrado na árvore do projeto apresentada na Figura \ref{Fig.5.1}. As classes armazenam os parâmetros e métodos relacionados à definição das propriedades dos materiais, à construção do modelo estrutural, à análise pelo método da rigidez e ao dimensionamento das armaduras. Também foram desenvolvidos módulos específicos para a geração e apresentação dos gráficos dos resultados obtidos. A seguir, serão apresentadas as principais classes do programa, destacando suas respectivas funções e a importância de cada uma para a organização do código e a execução das etapas de análise estrutural e dimensionamento das armaduras.
+O código foi estruturado em classes e módulos que correspondem às diferentes etapas do programa, desde a definição dos materiais e a construção do modelo estrutural até a análise e o dimensionamento das armaduras. Também foram desenvolvidos módulos para a representação gráfica dos resultados.
 
-\begin{figure}[H]
-\centering
-\refstepcounter{figure}
-\label{Fig.5.1}
+Entre as classes utilizadas na representação do modelo estrutural, a classe \texttt{No} é responsável por armazenar as coordenadas \(x\) e \(y\), a numeração e as informações referentes às restrições de deslocamento dos nós que representam os apoios da estrutura.
 
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Figura \thefigure: Estrutura do \textit{software}
-\end{minipage}
+A classe \texttt{Secao} reúne as propriedades geométricas e mecânicas das seções transversais dos elementos, armazenando informações como largura, altura, área e momento de inércia. Esses parâmetros são utilizados na determinação da matriz de rigidez dos elementos e nos procedimentos de dimensionamento das armaduras.
 
-\includegraphics[scale=1.5]{estrutura_software.png}
+As propriedades dos materiais são organizadas nas classes \texttt{Concreto} e \texttt{Aco}. A primeira armazena os parâmetros referentes às propriedades mecânicas do concreto, como a resistência característica à compressão (\(f_{ck}\)), o coeficiente de ponderação da resistência (\(\gamma_c\)) e o coeficiente de ajuste do módulo de elasticidade (\(\alpha_E\)). A partir desses valores, são calculadas as resistências à tração e à compressão, os módulos de elasticidade e os demais coeficientes e parâmetros necessários patra o dimensionamento das seções transversais. A classe \texttt{Aco} armazena os parâmetros referentes às propriedades mecânicas do aço, incluindo as resistências de cálculo das armaduras longitudinais e transversais e o módulo de elasticidade. Esses valores são utilizados no dimensionamento das armaduras. A organização dessas propriedades em classes próprias permite que os parâmetros dos materiais sejam utilizados pelas demais partes do programa durante a análise estrutural e o dimensionamento.
 
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Fonte: Elaborado pelo autor
-\end{minipage}
-\end{figure}
+A classe \texttt{Barra} representa os elementos que compõem o modelo de pórtico plano, relacionando os nós inicial e final, a seção transversal e as propriedades dos materiais. Além de armazenar essas informações, reúne os métodos responsáveis pelo cálculo do comprimento do elemento, pela construção da matriz de rigidez no sistema local e pela transformação dessa matriz para o sistema de coordenadas global, por meio da matriz de rotação.
 
-A classe \texttt{No} agrupa dados referentes aos índices dos nós do modelo estrutural, coordenadas x e y necessárias para representar a estrutura, assim como definições de restrições de deslocamentos conforme pode-se ver na Figura \ref{Fig.5.2}.
+A classe também reúne as rotinas de dimensionamento das armaduras longitudinais e transversais. Os resultados são armazenados em vetores, cujas posições correspondem às extremidades inicial e final de cada elemento. Dessa forma, os cálculos são realizados considerando as solicitações obtidas nos nós que delimitam cada barra, permitindo que os resultados sejam posteriormente utilizados na apresentação e representação gráfica das armaduras dimensionadas.
 
-\begin{figure}[H]
-\centering
-\refstepcounter{figure}
-\label{Fig.5.2}
+A classe \texttt{Estrutura} é responsável por reunir os nós e as barras que compõem o modelo estrutural e realizar os procedimentos relacionados à análise pelo método da rigidez. Nela são organizadas a matriz de rigidez global, o vetor de forças nodais e o vetor de deslocamentos. Seus métodos realizam a montagem da matriz de rigidez da estrutura, a aplicação das condições de contorno, a determinação dos deslocamentos nodais, o cálculo das solicitações internas nos elementos e a obtenção das reações de apoio. Dessa forma, essa classe centraliza os procedimentos necessários à resolução do modelo estrutural, utilizando os parâmetros previamente definidos nas demais classes.
 
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Figura \thefigure: Objeto que guarda os dados dos nós da estrutura
-\end{minipage}
+Além dessas classes, foi desenvolvida a classes \texttt{Carregamento\_distribuido}, responsável pela representação dos carregamentos aplicados nos elementos. Os carregamentos são utilizados na composição do vetor de forças da estrutura, considerando sua influência sobre os elementos e os nós correspondentes.
 
-\includegraphics[scale=1.5]{classe_no.png}
+Por fim, a classe \texttt{Modelo} reúne os parâmetros geométricos, mecânicos e de carregamento fornecidos pelo usuário, sendo responsável pela construção do modelo estrutural de uma viga com abertura. A partir dessas informações, são criados os nós, as barras, as seções transversais e os carregamentos, além de serem estabelecidas as condições de contorno e a discretização dos elementos. Após a definição do modelo, são executados os procedimentos de análise estrutural e dimensionamento das armaduras. O programa também possui a classe \texttt{Furo}, destinada à representação e organização dos parâmetros geométricos das aberturas, e a classe \texttt{ModeloFuros}, que permite a construção de modelos com múltiplas aberturas.
 
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Fonte: Elaborado pelo autor
-\end{minipage}
-\end{figure}
-
-A classe \texttt{Barra} recebe instâncias dos objetos que definem os nós, as propriedades dos materiais, a geometria e rigidez da seção transversal da barra, bem como argumentos necessários ao dimensionamento das armaduras (\ref{Fig.5.3}).
-
-\begin{figure}[H]
-\centering
-\refstepcounter{figure}
-\label{Fig.5.3}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Figura \thefigure: Objeto Barra do \textit{software}
-\end{minipage}
-
-\includegraphics[scale=1.25]{barra.png}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Fonte: Elaborado pelo autor
-\end{minipage}
-\end{figure}
-
-A classe \texttt{CarregamentoDistribuido} recebe uma instância do objeto \texttt{Barra}, ou seja, a barra onde será definido o carregamento, argumentos que definem a posição do carregamento e se será aplicado sobre todo o comprimento da barra (\ref{Fig.5.4}).
-
-\begin{figure}[H]
-\centering
-\refstepcounter{figure}
-\label{Fig.5.4}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Figura \thefigure: Objeto CarregamentoDistribuido do \textit{software}
-\end{minipage}
-
-\includegraphics[scale=1.5]{carregamento_distribuido.png}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Fonte: Elaborado pelo autor
-\end{minipage}
-\end{figure}
-
-A classe \texttt{Estrutura} recebe listas de nós e barras necessárias para a construção do modelo estrutural que representa a viga com abertura. A partir dessas informações, a matriz da estrutura é resolvida (\ref{Fig.5.5})...
-
-\begin{figure}[H]
-\centering
-\refstepcounter{figure}
-\label{Fig.5.5}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Figura \thefigure: Objeto Estrutura do \textit{software}
-\end{minipage}
-
-\includegraphics[scale=1.5]{classe_estrutura.png}
-
-\begin{minipage}{10cm}
-    \fontsize{10pt}{12pt}\selectfont
-    Fonte: Elaborado pelo autor
-\end{minipage}
-\end{figure}
+A apresentação gráfica dos resultados é realizada por meio dos módulos de visualização, desenvolvidos com auxílio da biblioteca Matplotlib. Esses módulos permitem representar a geometria do modelo estrutural, os nós e os elementos de barra, bem como apresentar diagramas de esforços e representações das armaduras calculadas. Dessa forma, os resultados obtidos pelas rotinas de análise e dimensionamento podem ser apresentados de maneira gráfica, facilitando sua interpretação e utilização pelo usuário.
 
 \section{Utilização do \textit{Software}}
 
-Para utilizar o \textit{software}, o usuário deve fornecer os dados de entrada necessários para o dimensionamento da viga com aberturas. Esses dados incluem informações sobre as dimensões da viga, propriedades do concreto e do aço, módulo da carga aplicada, posição e dimensões da abertura, entre outros.
+Para executar o \textit{software}, o usuário deve criar um objeto da classe \texttt{Modelo}, fornecendo os parâmetros necessários à definição da viga e ao dimensionamento das armaduras. Os dados devem ser informados conforme descrito a seguir:
 
-Os dados de entrada são introduzidos dentro de um módulo chamado modelo, que é responsável por armazenar e organizar as informações fornecidas pelo usuário. Esse módulo constrói o modelo de nós e barras que representa a viga com aberturas, chamando os módulos e funções programadas para esse propósito. Em seguida, os dados são construidos para calcular as reações, deslocamentos e esforços, a partir da solução do método da rigidez.
+\begin{enumerate}[label=\alph*)]
 
-***Figura modelo e dados de entrada*** 
+\item \textbf{Geometria da viga:} largura ($b_w$), altura ($h$) e comprimento ($l$), definido pela distância entre as faces internas dos apoios, além das larguras dos apoios esquerdo ($a_{p1}$) e direito ($a_{p2}$).
 
-O dimensionamento é realizado no objeto \texttt{Barra}, responsável pela representação dos elementos de barra que compõem o modelo estrutural. A classe possui, em sua função \texttt{\_\_init\_\_}, parâmetros destinados ao armazenamento dos resultados das áreas de armaduras longitudinais de tração e de compressão, bem como da área de armadura transversal (estribos).
+\item \textbf{Geometria da abertura:} altura ($a$), largura ($b$), altura do banzo inferior ($c$) e distância entre a face interna do apoio esquerdo e o centro da abertura ($l_f$).
 
-Cada um desses parâmetros é definido como um vetor de dimensão dois, utilizando a biblioteca \texttt{NumPy} do Python. Cada posição do vetor armazena o resultado correspondente a uma das extremidades da barra, ou seja, aos nós inicial e final do elemento.
+\item \textbf{Propriedades dos materiais:} resistência característica à compressão do concreto ($f_{ck}$), resistência característica ao escoamento do aço das armaduras longitudinais ($f_{yk}$) e transversais ($f_{ywk}$), além do coeficiente de ajuste do módulo de elasticidade do concreto ($\alpha_E$).
 
-As rotinas de cálculo são implementadas por meio de métodos próprios da classe, responsáveis por realizar os cálculos de dimensionamento de cada tipo de armadura. Ao final de cada rotina, os resultados obtidos são armazenados nos respectivos vetores da classe.
+\item \textbf{Carregamento:} intensidade do carregamento uniformemente distribuído ($w$).
 
-***Figura função Init da barra com os vetores***
+\item \textbf{Parâmetros de dimensionamento:} modelo de cálculo da armadura transversal (\texttt{modelo}), inclinação dos estribos ($\alpha$) e inclinação da biela comprimida de concreto ($\theta$). O parâmetro $\theta$ é necessário quando selecionado o modelo 2.
+
+\item \textbf{Discretização:} comprimento máximo dos elementos (\texttt{espacamento\_maximo}), que pode ser informado para controlar a divisão dos trechos da estrutura. Caso não seja especificado, o programa utiliza a discretização padrão.
+
+\end{enumerate}
+
+Após o preenchimento dos parâmetros, a instanciação da classe \texttt{Modelo} inicia automaticamente a construção do modelo estrutural, a análise pelo método da rigidez e o dimensionamento das armaduras longitudinais e transversais. Os resultados podem então ser apresentados graficamente por meio dos métodos de visualização disponíveis no programa.
+
+
 

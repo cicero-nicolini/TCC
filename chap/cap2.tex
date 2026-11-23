@@ -22,25 +22,24 @@ O presente trabalho considera como secundários os seguintes objetivos:
 
 \begin{enumerate}[label= \alph*)]
 
-    \item o desenvolvimento de um modelo estrutural baseado no  método da rigidez para a obtenção dos esforços solicitantes;
+    \item o desenvolvimento de um modelo estrutural baseado no método da rigidez para a obtenção das solicitações internas na viga;
 
-    \item desenvolver o roteiro de dimensionamento estrutural   de vigas de concreto armado sob flexão, flexo-tração,     flexo-compressão e corte;
+    \item desenvolver o roteiro de dimensionamento estrutural de vigas de concreto armado sob flexão, flexo-tração,     flexo-compressão e corte;
 
-    \item implementar a solução em linguagem Python utilizando  o paradigma de orientação a objetos;
+    \item implementar a solução em linguagem Python utilizando o paradigma de orientação a objetos;
 
-    \item desenvolver uma interface de usuário;
+    \item desenvolver uma interface para visualização dos resultados;
 
-    \item realizar verificações do modelo estrutural com    \textit{software} independentes;
+    \item realizar verificações dos resultados comparando-os com cálculos manuais e \textit{softwares} independentes;
 
-    \item comparação do dimensionamento em relação a métodos    empíricos que constam na literatura;
+    \item comparação do dimensionamento em relação a métodos empíricos que constam na literatura;
 
-    \item realizar análises paramétricas referente a mudanças   de posição ou de dimensão da abertura e seus impactos no  dimensionamento estrutural.
-
+    \item realizar uma análise paramétrica da área de aço com relação a diminuição da rigidez do banzo tracionado.
 \end{enumerate}
 
 \section{Delimitações}
 
-O presente trabalho terá as seguintes delimitações:
+O presente trabalho tem as seguintes delimitações:
 
 \begin{enumerate}[label=\alph*)]
 \item apenas furos retangulares serão abordados;
@@ -51,18 +50,19 @@ O presente trabalho terá as seguintes delimitações:
 
 \item análise estrutural através do modelo da rigidez;
 
-\item serão consideradas apenas cargas distribuidas ao longo da estrutura;
+\item serão consideradas apenas cargas distribuidas ao longo da viga;
 
-\item vigas esbeltas em que globalmente predomina a flexão e é válida a hipótese  Euler-Bernoulli das seções planas, e que apresentam um comportamento local na região da abertura do tipo Vierendel.
+\item vigas esbeltas nas quais predomina globalmente o comportamento à flexão, sendo válida a hipótese de Euler-Bernoulli de conservação das seções planas, mas que apresentam, localmente, na região da abertura, um mecanismo do tipo Vierendeel.
 
 \end{enumerate}
 
 \section{Delineamento}
 
-Para atingir os resultados esperados, o trabalho será desenvolvido por meio das seguintes
+Para atingir os resultados esperados, o trabalho foi desenvolvido por meio das seguintes
 etapas:
 
 \begin{enumerate}[label=\alph*)]
+
 \item revisão bibliográfica;
 
 \item implementação do método da rigidez;
@@ -71,22 +71,25 @@ etapas:
 
 \item implementação dos algoritmos para o dimensionamento das armaduras;
 
-\item análises paramétricas;
+\item verificações dos algoritmos de dimensionamento das armaduras;
+
+\item implementação do acoplamento entre a análise estrutural e o dimensionamento das armaduras;
 
 \item verificação dos resultados;
+
+\item análise paramétrica;
 
 \item considerações finais.
 
 \end{enumerate}
 
-A revisão bibliográfica consiste na pesquisa de normas, trabalhos acadêmicos e livros,
+A revisão bibliográfica consistiu na pesquisa de normas, trabalhos acadêmicos e livros,
 envolvendo o dimensionamento de vigas de concreto armado com aberturas, método da
-rigidez e sua implementação computacional. O método da rigidez foi a ferramenta escolhida
+rigidez e sua implementação computacional. O método da rigidez foi a abordagem escolhida
 para a obtenção dos esforços internos na estrutura, necessários para o dimensionamento. Para
-verificar a consistência dos resultados, serão testados exemplos do livro \textit{Matrix Analysis of
-Framed Structures} de \citeonline{Weaver2018}, referência clássica na aplicação do método da
-rigidez. O algoritmo para o dimensionamento das armaduras será planejado e elaborado
+verificar a consistência dos resultados, foram testados exemplos do livro \textit{Matrix Analysis of
+Framed Structures} de \citeonline{Weaver2018}, conjuntamente com o Ftool. O algoritmo para o dimensionamento das armaduras foi planejado e elaborado
 conforme os critérios e parâmetros da NBR 6118 \cite{ABNT_NBR6118_2026}. Na etapa de verificação dos
-resultados, serão feitos testes finais no programa para avaliar seu funcionamento e
-confiabilidade. Ao final serão feitas algumas análises paramétricas e considerações finais a
+resultados, foram feitos testes finais no programa para avaliar seu funcionamento e
+confiabilidade. Ao final é apresentado uma análise paramétrica com relação ao efeito da diminuição da rigidez do banzo tracionado e considerações finais a
 respeito do \textit{software}.
