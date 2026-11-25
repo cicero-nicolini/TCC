@@ -183,6 +183,207 @@ em que $\mathbf{f}$ é o vetor de forças nodais da barra no sistema de coordena
 
 em que $\mathbf{k_{L}}$ é a matriz de rigidez da barra no sistema de coordenadas local, $\mathbf{k}$ é a matriz de rigidez da barra no sistema de coordenadas global, $\mathbf{{R}}$ é a matriz de rotação e $\mathbf{{R}^T}$ é a matriz de rotação transposta.
 
+\section{Representação da configuração deformada}
+
+A representação gráfica da configuração deformada da estrutura é realizada a partir dos deslocamentos e das rotações nodais obtidos por meio do método da rigidez direta. Uma vez que os resultados da análise estrutural são determinados nos nós do modelo, empregam-se funções de forma para a interpolação dos deslocamentos ao longo dos elementos de barra.
+
+Inicialmente, os deslocamentos nodais de cada elemento são transformados do sistema global para o sistema local de coordenadas. Os deslocamentos na direção axial são interpolados por meio de funções de forma lineares, enquanto os deslocamentos na direção transversal são interpolados utilizando funções de forma cúbicas de Hermite, em conformidade com a formulação do elemento de viga de Euler-Bernoulli.
+
+A utilização das funções de Hermite permite representar a curvatura dos elementos de barra, garantindo a compatibilidade entre os deslocamentos transversais e as rotações obtidas nas extremidades de cada elemento.
+
+Para a construção da representação gráfica, cada elemento de barra é subdividido em 40 pontos igualmente espaçados, nos quais são avaliadas as funções de interpolação. A partir dos deslocamentos calculados nesses pontos, determinam-se as coordenadas da configuração deformada no sistema local, posteriormente transformadas para o sistema global de coordenadas.
+
+A representação gráfica é realizada por meio da biblioteca Matplotlib, sendo disponibilizado ao usuário um controle interativo para a amplificação dos deslocamentos. Esse recurso permite facilitar a identificação do comportamento estrutural, especialmente na região das aberturas, sem modificar os resultados provenientes da análise estrutural.
+
+\subsection{Transformação dos deslocamentos nodais}
+
+Considerando um elemento de barra de comprimento $L$, constituído pelos nós inicial $i$ e final $j$, o vetor de deslocamentos nodais no sistema local de coordenadas é dado por:
+
+\begin{equation}
+    \mathbf{u^e} =
+    \begin{bmatrix}
+        u_i & v_i & \theta_i &
+        u_j & v_j & \theta_j
+    \end{bmatrix}^{\mathrm{T}}
+    \label{eq:deformada_vetor_local}
+\end{equation}
+
+em que $u$ e $v$ correspondem, respectivamente, aos deslocamentos axial e transversal, enquanto $\theta$ corresponde à rotação da seção transversal.
+
+Os deslocamentos nodais no sistema local são obtidos a partir dos deslocamentos no sistema global mediante a seguinte transformação de coordenadas:
+
+\begin{equation}
+    \mathbf{u^e} = \mathbf{R}\mathbf{U_L} 
+    \label{eq:deformada_transformacao}
+\end{equation}
+
+\subsection{Interpolação dos deslocamentos}
+
+Para a interpolação dos deslocamentos ao longo do elemento, define-se a coordenada adimensional $\xi$, expressa por:
+
+\begin{equation}
+    \xi = \frac{x}{L},
+    \qquad \xi \in [0,1]
+    \label{eq:deformada_coordenada_adimensional}
+\end{equation}
+
+\noindent
+em que $x$ corresponde à coordenada longitudinal no sistema local do elemento. O deslocamento axial é aproximado por um polinômio de primeiro grau, resultando na seguinte expressão:
+
+\begin{equation}
+    u(\xi) = N_1(\xi)u_i + N_2(\xi)u_j
+    \label{eq:deformada_interpolacao_axial}
+\end{equation}
+
+\noindent
+sendo $N_1$ e $N_2$ as funções de forma lineares,
+dadas por:
+
+\begin{equation}
+    \begin{aligned}
+        N_1(\xi) &= 1-\xi \\
+        N_2(\xi) &= \xi
+    \end{aligned}
+    \label{eq:deformada_funcoes_lineares}
+\end{equation}
+
+Para a interpolação dos deslocamentos transversais, admite-se um polinômio de terceiro grau, expresso por:
+
+\begin{equation}
+    v(x) = a_0+a_1x+a_2x^2+a_3x^3
+    \label{eq:deformada_polinomio_cubico}
+\end{equation}
+
+Considerando a hipótese de pequenas rotações e a cinemática associada à teoria de vigas de Euler--Bernoulli, a rotação da seção transversal é relacionada à derivada primeira do deslocamento transversal em relação à coordenada longitudinal:
+
+\begin{equation}
+    \theta(x) = \frac{\mathrm{d}v(x)}{\mathrm{d}x}
+    \label{eq:deformada_rotacao}
+\end{equation}
+
+Dessa forma, os coeficientes do polinômio apresentado na equação \eqref{eq:deformada_polinomio_cubico} são determinados mediante a imposição das seguintes condições de compatibilidade cinemática nas extremidades do elemento:
+
+\begin{equation}
+    \begin{aligned}
+        v(0) = v_i~; ~~~ v'(0) = \theta_i \\
+        v(L) = v_j~; ~~~ v'(L) = \theta_j
+    \end{aligned}
+    \label{eq:deformada_condicoes_contorno}
+\end{equation}
+
+A partir dessas condições, obtém-se a expressão para o deslocamento transversal em função dos deslocamentos e das rotações nodais:
+
+\begin{equation}
+    v(\xi) =
+    H_1(\xi)v_i +
+    H_2(\xi)\theta_i +
+    H_3(\xi)v_j +
+    H_4(\xi)\theta_j
+    \label{eq:deformada_interpolacao_transversal}
+\end{equation}
+ 
+em que $H_1$, $H_2$, $H_3$ e $H_4$ correspondem às funções de forma cúbicas de Hermite, dadas por:
+
+\begin{equation}
+    \begin{aligned}
+        H_1(\xi) &= 1-3\xi^2+2\xi^3 \\
+        H_2(\xi) &= L(\xi-2\xi^2+\xi^3) \\
+        H_3(\xi) &= 3\xi^2-2\xi^3 \\
+        H_4(\xi) &= L(-\xi^2+\xi^3)
+    \end{aligned}
+    \label{eq:deformada_funcoes_hermite}
+\end{equation}
+
+A utilização das funções cúbicas de Hermite permite representar a curvatura dos elementos de barra, respeitando simultaneamente os deslocamentos transversais e as rotações nodais obtidos na análise estrutural.
+
+As expressões de interpolação dos deslocamentos axial e transversal podem ser reunidas em uma única relação matricial, dada por:
+
+\begin{equation}
+    \begin{bmatrix}
+        u(\xi) \\
+        v(\xi)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        N_1 & 0   & 0   & N_2 & 0   & 0   \\
+        0   & H_1 & H_2 & 0   & H_3 & H_4
+    \end{bmatrix}
+    \begin{bmatrix}
+        u_i \\
+        v_i \\
+        \theta_i \\
+        u_j \\
+        v_j \\
+        \theta_j
+    \end{bmatrix}
+    \label{eq:deformada_interpolacao_matricial}
+\end{equation}
+
+ou, de forma compacta:
+
+\begin{equation}
+    \mathbf{u}(\xi) =
+    \mathbf{N}(\xi)\mathbf{u^e}
+    \label{eq:deformada_interpolacao_compacta}
+\end{equation}
+
+em que $\mathbf{N}(\xi)$ corresponde à matriz de
+funções de forma do elemento.
+
+\subsection{Determinação das coordenadas deformadas}
+
+Uma vez determinados os deslocamentos axial e transversal ao longo do elemento, as coordenadas da configuração deformada no sistema local são obtidas pela superposição dos deslocamentos às coordenadas da configuração indeformada, conforme:
+
+\begin{equation}
+    \begin{aligned}
+        x_d(\xi) &= L\xi+\lambda u(\xi) \\
+        y_d(\xi) &= \lambda v(\xi)
+    \end{aligned}
+    \label{eq:deformada_coordenadas_locais}
+\end{equation}
+
+em que $\lambda$ corresponde ao fator de amplificação gráfica dos deslocamentos.
+
+Posteriormente, as coordenadas da configuração deformada são transformadas para o sistema global de coordenadas por meio da expressão:
+
+\begin{equation}
+    \begin{bmatrix}
+        X_d(\xi) \\
+        Y_d(\xi)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        X_i \\
+        Y_i
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        c & -s \\
+        s &  c
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_d(\xi) \\
+        y_d(\xi)
+    \end{bmatrix}
+    \label{eq:deformada_coordenadas_globais}
+\end{equation}
+
+Substituindo a Equação~\eqref{eq:deformada_coordenadas_locais} na Equação~\eqref{eq:deformada_coordenadas_globais}, obtêm-se as coordenadas globais da configuração deformada em função dos deslocamentos interpolados:
+
+\begin{equation}
+    \begin{aligned}
+        X_d(\xi) &=
+        X_i+cL\xi+
+        \lambda\left[cu(\xi)-sv(\xi)\right] \\
+        Y_d(\xi) &=
+        Y_i+sL\xi+
+        \lambda\left[su(\xi)+cv(\xi)\right]
+    \end{aligned}
+    \label{eq:deformada_coordenadas_finais}
+\end{equation}
+
+Cabe ressaltar que a configuração deformada apresentada corresponde a uma aproximação baseada na interpolação dos deslocamentos e das rotações nodais. Dessa forma, não é considerada explicitamente a parcela particular dos deslocamentos associada aos carregamentos distribuídos ao longo dos elementos de barra. A qualidade dessa representação depende, portanto, também do refinamento da discretização do modelo estrutural.
+
 \section{Dimensionamento das Armaduras Longitudinais}
 
 Conforme \citeonline{carvalho2014calculo}, o dimensionamento é feito no estado limite último, exigindo que a seção mais solicitada alcance as deformações limites dos materiais, ou seja, a falha estrutural pode ocorrer tanto pelo esmagamento do concreto comprimido quanto pelo alongamento excessivo da armadura tracionada.
