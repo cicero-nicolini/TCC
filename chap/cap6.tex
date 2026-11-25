@@ -1,0 +1,202 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	cap5.tex 
+%  -----------
+%
+%	Neste arquivo você escreve o capítulo. Deve sempre iniciar com o ambiente
+%	\chapter{Nome do Capitulo}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+
+\chapter{Verificação do software}
+% ----------------------------------------------------------
+
+\section{Verificações parciais do modelo estrutural}
+
+A estrutura utilizada no primeiro exemplo de verificação do modelo estrutural foi retirada do livro de \citeonline{Weaver2018} conforme pode se ver na Figura \ref{Fig.6.1}.
+
+\begin{figure}[H]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.6.1}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Exemplo do livro \textit{Matrix Analysis of Framed Structures}
+    \end{minipage}
+
+    \includegraphics[scale=1.5]{exemplo1_livro.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: \citeonline{Weaver2018}
+    \end{minipage}
+\end{figure}
+
+A estrutura foi modelada no Ftool, conforme apresentado na Figura \ref{Fig.6.2}. As variáveis necessárias para o cálculo foram definidas com os seguintes valores: módulo de elasticidade ($E = 10000,\text{kN/cm}^2$), área da seção transversal ($A = 10\text{cm}^2$), momento de inércia ($I = 1000,\text{cm}^4$), carga concentrada ($P = 10,\text{kN}$), comprimento ($L = 100,\text{cm}$), momento concentrado ($PL = 1000,\text{kN}\cdot\text{cm}$), carga distribuída ($2{,}4P/L = 0{,}24,\text{kN/cm}$), carga concentrada ($2P = 20,\text{kN}$) e distâncias ($3L/4 = 75,\text{cm}$ e $L/2 = 50,\text{cm}$).
+
+\begin{figure}[H]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.6.2}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Exemplo gerado no Ftool
+    \end{minipage}
+
+    \includegraphics[scale=2]{exemplo1.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: Elaborado pelo autor
+    \end{minipage}
+\end{figure}
+
+Os resultados obtidos pelo Ftool para valores de reações e diagramas de esforços solicitantes são apresentados na figura \ref{Fig.6.3} a seguir.
+
+\begin{figure}[H]
+    \centering
+    \refstepcounter{figure}
+    \label{Fig.6.3}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Figura \thefigure: Resultados obtidos pelo Ftool
+    \end{minipage}
+
+    \includegraphics[scale=0.3]{resultados_ftool.png}
+
+    \begin{minipage}{10cm}
+        \fontsize{10pt}{12pt}\selectfont
+        Fonte: Elaborado pelo autor
+    \end{minipage}
+\end{figure}
+
+\section{Verificações parciais da flexão simples}
+
+Para verificar a rotina de dimensionamento à flexão simples, foi reproduzido o exemplo apresentado por \citeonline[p. 130--131]{carvalho2014calculo}, no qual se determina a área de armadura longitudinal necessária para uma seção retangular de concreto armado submetida a um momento fletor.
+
+\begin{table}[H]
+\centering
+\caption{Dados do exemplo de referência}
+\label{tab:exemplo_flexao}
+\begin{tabular}{lc}
+\hline
+\textbf{Parâmetro} & \textbf{Valor} \\
+\hline
+Largura da seção ($b_w$) & 12 cm \\
+Altura útil ($d$) & 29 cm \\
+Resistência à compressão ($f_{ck}$) & 20 MPa \\
+Resistência característica do aço ($f_{yk}$) & 500 MPa \\
+Momento solicitante ($M$) & 12,2 kN$\cdot$m \\
+\hline
+\end{tabular}
+\end{table}
+
+Inicialmente, é preciso determinar os parâmetros de cálculo relativos ao concreto e ao aço, conforme as expressões:
+
+\begin{align}
+f_{cd} &= \frac{f_{ck}}{\gamma_c}
+= \frac{20}{1,4}
+= 14,286\,\text{MPa} \\
+f_{yd} &= \frac{f_{yk}}{\gamma_s}
+= \frac{500}{1,15}
+= 434,78\,\text{MPa} \\
+\varepsilon_{yd} &= \frac{f_{yd}}{E_s}
+= 0,002070
+\end{align}
+
+Para o concreto, adotam-se $\alpha_c=0,85$, $\eta_c=1$ e $\lambda=0,8$. O limite entre os domínios 3 e 4 é inicialmente calculado por:
+
+\begin{equation}
+x_{lim}=
+\frac{\varepsilon_{cu}}
+{\varepsilon_{yd}+\varepsilon_{cu}}\,d
+=0,1822\,\text{m}
+\end{equation}
+
+Como o valor obtido corresponde a $x_{lim}>0,45d$, adota-se $x_{lim}=0,45d=0,1305\,\text{m}$, conforme o critério estabelecido no fluxograma de dimensionamento.
+
+A verificação da necessidade de armadura dupla é realizada a partir do momento limite da seção:
+
+\begin{equation}
+M_{dlim}=
+\alpha_c\eta_c f_{cd}b_w\lambda x_{lim}
+\left(d-\frac{\lambda x_{lim}}{2}\right)
+\end{equation}
+
+Substituindo os valores, obtém-se $M_{dlim}=36,18\,\text{kN}\cdot\text{m}$. Como $M_d\leq M_{dlim}$, a seção pode ser dimensionada com armadura simples, sendo considerada nula a armadura comprimida adicional.
+
+A posição da linha neutra é determinada pela expressão:
+
+\begin{equation}
+x=
+\frac{d-\sqrt{d^2-
+\frac{2M_d}{\alpha_c\eta_c f_{cd}b_w}}}{\lambda}
+\end{equation}
+
+Resultando em $x=0,05464\,\text{m}$. A área de armadura longitudinal é então calculada por:
+
+\begin{equation}
+A_{s1}=
+\frac{\alpha_c\eta_c f_{cd}b_w\lambda x}{f_{yd}}
+=1,465\,\text{cm}^2
+\end{equation}
+
+O dimensionamento resulta em $A_{s1}=1,465\,\text{cm}^2$, valor próximo ao obtido no exemplo de referência, de $1,46\,\text{cm}^2$, evidenciando a concordância entre os resultados.
+
+O segundo exemplo de verificação foi retirado de \citeonline[p.~132--133]{carvalho2014calculo} e corresponde ao mesmo problema apresentado no exemplo anterior, mantendo-se as dimensões da seção e o momento de cálculo, mas alterando-se a resistência característica à compressão do concreto para $f_{ck}=90\,\text{MPa}$. Assim, são mantidos $b_w=0,12\,\text{m}$, $d=0,29\,\text{m}$ e $M_d=17,08\,\text{kN}\cdot\text{m}$.
+
+Inicialmente, são determinados os coeficientes relativos ao concreto, considerando os parâmetros correspondentes ao Grupo II:
+
+\begin{align}
+\lambda &= 0,8-\frac{f_{ck}-50}{400}=0,7 \\
+\alpha_c &= 0,85\left[1-\frac{f_{ck}-50}{200}\right]=0,68
+\end{align}
+
+A resistência de cálculo do concreto é:
+
+\begin{equation}
+f_{cd}=\frac{90}{1,4}=64,286\,\text{MPa}
+\end{equation}
+
+A posição da linha neutra é obtida pela expressão:
+
+\begin{equation}
+x=\frac{d\pm\sqrt{d^2-
+2\left(\frac{M_d}{b_w\alpha_cf_{cd}}\right)}}{\lambda}
+\end{equation}
+
+Substituindo os valores, obtêm-se duas soluções, $x_1=0,812\,\text{m}$ e $x_2=0,0164\,\text{m}$. Como a primeira solução posiciona a linha neutra fora da seção transversal, adota-se $x=0,0164\,\text{m}$.
+
+Para verificar o domínio de deformação, determina-se a posição da linha neutra no limite entre os domínios 2 e 3:
+
+\begin{equation}
+x_{2-3}=0,259d=0,259\cdot0,29
+=0,0751\,\text{m}
+\end{equation}
+
+Como $x<x_{2-3}$, a seção encontra-se no domínio 2, de modo que o aço atinge o escoamento e pode-se adotar $f_s=f_{yd}=43,478\,\text{kN/cm}^2$.
+
+O braço de alavanca é calculado por:
+
+\begin{equation}
+z=d-\frac{\lambda x}{2}
+=0,29-\frac{0,7\cdot0,0164}{2}
+=0,284\,\text{m}
+\end{equation}
+
+Por fim, a área de armadura longitudinal necessária é:
+
+\begin{equation}
+A_s=\frac{M_d}{z f_{yd}}
+=\frac{17,08}{0,284\cdot43,478}
+=1,39\,\text{cm}^2
+\end{equation}
+
+
+
+
