@@ -43,7 +43,7 @@ No que diz respeito à definição da rigidez da estrutura, foi considerado o m�
 
 \subsection{Descrição do Método da Rigidez}
 
-Segundo \citeonline{Soriano2005}, o método da rigidez consiste na formulação de um sistema de equações de equilíbrio, cuja matriz de coeficientes corresponde à matriz de rigidez da estrutura e o vetor de termos independentes representa o vetor de forças nodais. Esse sistema pode ser obtido a partir dos sistemas de equações de equilíbrio das diversas barras que compõem a estrutura consideradas isoladamente, quando os elementos são expressos no sistema de coordenadas global da estrutura, os coeficientes de rigidez correspondentes aos mesmos graus de liberdade globais são somados, permitindo a montagem da matriz de rigidez da estrutura por meio da adição direta. O mesmo procedimento é aplicado à montagem do vetor de forças. O comportamento mecânico da estrutura é expresso pela equação matricial \ref{eq:rigidez_estrutura}.
+Segundo \citeonline{Soriano2005}, o método da rigidez consiste na formulação de um sistema de equações de equilíbrio, cuja matriz de coeficientes corresponde à matriz de rigidez da estrutura e o vetor de termos independentes representa o vetor de forças nodais. Esse sistema pode ser obtido a partir dos sistemas de equações de equilíbrio das diversas barras que compõem a estrutura. Quando os elementos são expressos no sistema de coordenadas global da estrutura, os coeficientes de rigidez correspondentes aos mesmos graus de liberdade globais são somados, permitindo a montagem da matriz de rigidez da estrutura por meio da adição direta. O mesmo procedimento é aplicado à montagem do vetor de forças. Por fim, os deslocamentos (graus de liberdades nodais) da estrutura são expressos pela equação matricial \ref{eq:rigidez_estrutura}.
 
 \begin{equation}
 \mathbf{K}\mathbf{U} = \mathbf{F}
@@ -185,7 +185,7 @@ em que $\mathbf{k_{L}}$ é a matriz de rigidez da barra no sistema de coordenada
 
 \section{Representação da configuração deformada}
 
-A representação gráfica da configuração deformada da estrutura é realizada a partir dos deslocamentos e das rotações nodais obtidos por meio do método da rigidez direta. Uma vez que os resultados da análise estrutural são determinados nos nós do modelo, empregam-se funções de forma para a interpolação dos deslocamentos ao longo dos elementos de barra.
+A representação gráfica da configuração deformada da estrutura é realizada a partir dos deslocamentos e das rotações nodais obtidos por meio do método da rigidez direta. Uma vez que os resultados da análise estrutural são determinados nos nós do modelo, empregam-se funções de forma para a interpolação dos deslocamentos ao longo da barra.
 
 Inicialmente, os deslocamentos nodais de cada elemento são transformados do sistema global para o sistema local de coordenadas. Os deslocamentos na direção axial são interpolados por meio de funções de forma lineares, enquanto os deslocamentos na direção transversal são interpolados utilizando funções de forma cúbicas de Hermite, em conformidade com a formulação do elemento de viga de Euler-Bernoulli.
 
@@ -193,14 +193,14 @@ A utilização das funções de Hermite permite representar a curvatura dos elem
 
 Para a construção da representação gráfica, cada elemento de barra é subdividido em 40 pontos igualmente espaçados, nos quais são avaliadas as funções de interpolação. A partir dos deslocamentos calculados nesses pontos, determinam-se as coordenadas da configuração deformada no sistema local, posteriormente transformadas para o sistema global de coordenadas.
 
-A representação gráfica é realizada por meio da biblioteca Matplotlib, sendo disponibilizado ao usuário um controle interativo para a amplificação dos deslocamentos. Esse recurso permite facilitar a identificação do comportamento estrutural, especialmente na região das aberturas, sem modificar os resultados provenientes da análise estrutural.
+A representação gráfica é realizada por meio da biblioteca \textit{Matplotlib}, sendo disponibilizado ao usuário um controle interativo para a amplificação dos deslocamentos. Esse recurso permite facilitar a identificação do comportamento estrutural, especialmente na região das aberturas, sem modificar os resultados provenientes da análise estrutural.
 
 \subsection{Transformação dos deslocamentos nodais}
 
 Considerando um elemento de barra de comprimento $L$, constituído pelos nós inicial $i$ e final $j$, o vetor de deslocamentos nodais no sistema local de coordenadas é dado por:
 
 \begin{equation}
-    \mathbf{u^e} =
+    \mathbf{u_L} =
     \begin{bmatrix}
         u_i & v_i & \theta_i &
         u_j & v_j & \theta_j
@@ -208,12 +208,10 @@ Considerando um elemento de barra de comprimento $L$, constituído pelos nós in
     \label{eq:deformada_vetor_local}
 \end{equation}
 
-em que $u$ e $v$ correspondem, respectivamente, aos deslocamentos axial e transversal, enquanto $\theta$ corresponde à rotação da seção transversal.
-
-Os deslocamentos nodais no sistema local são obtidos a partir dos deslocamentos no sistema global mediante a seguinte transformação de coordenadas:
+em que $\mathbf{u_L}$ é o vetor de deslocamentos nodais da barra, sendo que $u$ e $v$ correspondem, respectivamente, aos deslocamentos axial e transversal, enquanto $\theta$ corresponde à rotação da seção transversal. Esses deslocamentos nodais no sistema local são obtidos a partir dos deslocamentos no sistema global mediante a seguinte transformação de coordenadas:
 
 \begin{equation}
-    \mathbf{u^e} = \mathbf{R}\mathbf{U_L} 
+    \mathbf{u_L} = \mathbf{R}\mathbf{u} 
     \label{eq:deformada_transformacao}
 \end{equation}
 
@@ -257,7 +255,7 @@ Para a interpolação dos deslocamentos transversais, admite-se um polinômio de
 Considerando a hipótese de pequenas rotações e a cinemática associada à teoria de vigas de Euler--Bernoulli, a rotação da seção transversal é relacionada à derivada primeira do deslocamento transversal em relação à coordenada longitudinal:
 
 \begin{equation}
-    \theta(x) = \frac{\mathrm{d}v(x)}{\mathrm{d}x}
+    \theta(x) = v'(x) = \frac{\mathrm{d}v(x)}{\mathrm{d}x}
     \label{eq:deformada_rotacao}
 \end{equation}
 
@@ -323,7 +321,7 @@ ou, de forma compacta:
 
 \begin{equation}
     \mathbf{u}(\xi) =
-    \mathbf{N}(\xi)\mathbf{u^e}
+    \mathbf{N}(\xi)\mathbf{u_L}
     \label{eq:deformada_interpolacao_compacta}
 \end{equation}
 
@@ -383,6 +381,11 @@ Substituindo a Equação~\eqref{eq:deformada_coordenadas_locais} na Equação~\e
 \end{equation}
 
 Cabe ressaltar que a configuração deformada apresentada corresponde a uma aproximação baseada na interpolação dos deslocamentos e das rotações nodais. Dessa forma, não é considerada explicitamente a parcela particular dos deslocamentos associada aos carregamentos distribuídos ao longo dos elementos de barra. A qualidade dessa representação depende, portanto, também do refinamento da discretização do modelo estrutural.
+
+\section{Determinação dos esforços solicitantes para o dimensionamento}
+
+No programa desenvolvido neste trabalho, o dimensionamento das armaduras longitudinais e transversais é realizado exclusivamente com base nos esforços solicitantes obtidos nas extremidades dos elementos de barra. Dessa forma, cada elemento possui duas seções de dimensionamento, correspondentes aos seus nós inicial e final.
+
 
 \section{Dimensionamento das Armaduras Longitudinais}
 
